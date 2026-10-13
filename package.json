@@ -1,0 +1,13 @@
+{
+  "name": "musicalize-camboriu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site da Musicalize Camboriú, escola de música em Camboriú (SC).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && npx --yes http-server dist -p 4321 -c-1 --ext html",
+    "assets": "node scripts/assets.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
