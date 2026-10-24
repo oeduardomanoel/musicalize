@@ -9,6 +9,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUB = join(ROOT, 'public');
 const font = (await readFile(join(PUB, 'assets/fonts/dm-sans-latin-wght-normal.woff2'))).toString('base64');
 const serif = (await readFile(join(PUB, 'assets/fonts/instrument-serif-latin-400-italic.woff2'))).toString('base64');
+const photo = (await readFile(join(PUB, 'assets/img/hero-1600.webp'))).toString('base64');
 
 const base = `<style>
 @font-face{font-family:D;src:url(data:font/woff2;base64,${font}) format('woff2');font-weight:100 1000}
@@ -22,10 +23,11 @@ const bars = (n, h, w, gap, color = '#ffcc00') => Array.from({ length: n }, (_, 
 }).join('').replace(/^/, `<div style="display:flex;align-items:flex-end;gap:${gap}px;height:${h}px">`) + '</div>';
 
 const og = `${base}<body style="width:1200px;height:630px;position:relative;overflow:hidden;padding:72px 80px;display:flex;flex-direction:column;justify-content:space-between">
-<div style="position:absolute;width:760px;height:760px;right:-260px;top:-300px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,204,0,.35),transparent)"></div>
-<div style="display:flex;align-items:center;gap:16px;font-size:22px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#ffcc00"><span style="width:40px;height:3px;background:#ffcc00"></span>Musicalize Camboriú</div>
-<div style="font-size:112px;line-height:.9;letter-spacing:-.055em;font-weight:850">Aprenda tocando.<br>Viva o <span style="font-family:S;font-style:italic;font-weight:400;color:#ffcc00;letter-spacing:-.02em">palco.</span></div>
-<div style="display:flex;justify-content:space-between;align-items:flex-end">
+<div style="position:absolute;inset:0;background:url(data:image/webp;base64,${photo}) center 40%/cover"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.7) 50%,rgba(10,10,10,.25) 100%)"></div>
+<div style="position:relative;display:flex;align-items:center;gap:16px;font-size:22px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#ffcc00"><span style="width:40px;height:3px;background:#ffcc00"></span>Musicalize Camboriú</div>
+<div style="position:relative;font-size:112px;line-height:.9;letter-spacing:-.055em;font-weight:850">Aprenda tocando.<br>Viva o <span style="font-family:S;font-style:italic;font-weight:400;color:#ffcc00;letter-spacing:-.02em">palco.</span></div>
+<div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end">
 <div style="font-size:26px;color:#c9c4b8;font-weight:600;line-height:1.35">Escola de música em Camboriú (SC)<br><b style="color:#f6f3ec">+3 mil alunos · Aula experimental</b></div>
 ${bars(18, 110, 12, 8)}
 </div></body>`;

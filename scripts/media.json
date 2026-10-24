@@ -1,0 +1,812 @@
+{
+ "hero": {
+  "alt": "Banda de alunos da Musicalize tocando no palco com o telão da escola ao fundo",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "palco": {
+  "alt": "Aluno de guitarra no palco de um evento da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "aula-baixo": {
+  "alt": "Professor de baixo da Musicalize dando aula para alunos",
+  "w": 1080,
+  "h": 720,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1080,
+    720
+   ]
+  ]
+ },
+ "escola": {
+  "alt": "Espaço da Musicalize com a frase Deixe a música falar por você",
+  "w": 1080,
+  "h": 1561,
+  "sizes": [
+   [
+    480,
+    694
+   ],
+   [
+    900,
+    1301
+   ]
+  ]
+ },
+ "pro-guitarra-1": {
+  "alt": "Guitarrista no palco da Musicalize",
+  "w": 4000,
+  "h": 6000,
+  "sizes": [
+   [
+    480,
+    720
+   ],
+   [
+    900,
+    1350
+   ]
+  ]
+ },
+ "pro-baixo-1": {
+  "alt": "Baixista no palco com o telão da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-baixo-2": {
+  "alt": "Baixista sob as luzes do palco",
+  "w": 4000,
+  "h": 6000,
+  "sizes": [
+   [
+    480,
+    720
+   ],
+   [
+    900,
+    1350
+   ]
+  ]
+ },
+ "pro-baixo-3": {
+  "alt": "Baixista tocando em show da Musicalize",
+  "w": 4000,
+  "h": 6000,
+  "sizes": [
+   [
+    480,
+    720
+   ],
+   [
+    900,
+    1350
+   ]
+  ]
+ },
+ "pro-baixo-4": {
+  "alt": "Baixista em frente ao telão da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-canto-1": {
+  "alt": "Aluna de canto se apresentando no palco",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-guitarra-2": {
+  "alt": "Aluno de guitarra sob luz roxa no palco",
+  "w": 4000,
+  "h": 6000,
+  "sizes": [
+   [
+    480,
+    720
+   ],
+   [
+    900,
+    1350
+   ]
+  ]
+ },
+ "pro-guitarra-3": {
+  "alt": "Aluna de guitarra tocando em show",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-bateria-1": {
+  "alt": "Aluno de bateria no palco da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-baixo-5": {
+  "alt": "Aluna sorrindo durante apresentação",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-guitarra-4": {
+  "alt": "Aluno de guitarra com o telão da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-guitarra-5": {
+  "alt": "Guitarrista de cabelo longo tocando no palco",
+  "w": 4000,
+  "h": 6000,
+  "sizes": [
+   [
+    480,
+    720
+   ],
+   [
+    900,
+    1350
+   ]
+  ]
+ },
+ "pro-canto-2": {
+  "alt": "Aluna de canto cantando no palco",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-canto-3": {
+  "alt": "Aluna cantando em foto preto e branco",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "pro-bateria-2": {
+  "alt": "Aluno de bateria em show da Musicalize",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
+   ]
+  ]
+ },
+ "ukulele-1": {
+  "alt": "Aluna tocando ukulele na Musicalize",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "violao-1": {
+  "alt": "Aluna tocando violão",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "violao-2": {
+  "alt": "Aluna cantando e tocando violão",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "guitarra-1": {
+  "alt": "Aluno de guitarra em apresentação",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "guitarra-2": {
+  "alt": "Guitarrista no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "guitarra-3": {
+  "alt": "Aluno cantando e tocando guitarra",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "guitarra-prof": {
+  "alt": "Professor de guitarra da Musicalize",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "baixo-1": {
+  "alt": "Aluna de baixo em apresentação",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "baixo-2": {
+  "alt": "Aluno de baixo em apresentação",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "baixo-3": {
+  "alt": "Aluna tocando baixo no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "baixo-4": {
+  "alt": "Aluno de baixo tocando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "baixo-prof": {
+  "alt": "Professor de baixo da Musicalize",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-1": {
+  "alt": "Aluno de bateria tocando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-2": {
+  "alt": "Aluna de bateria tocando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-3": {
+  "alt": "Aluna de bateria sorrindo",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-4": {
+  "alt": "Aluno de bateria em aula",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-5": {
+  "alt": "Aluna tocando bateria no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "bateria-prof": {
+  "alt": "Professor de bateria da Musicalize",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "canto-1": {
+  "alt": "Aluna de canto em apresentação",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "canto-2": {
+  "alt": "Aluna de canto cantando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "canto-3": {
+  "alt": "Aluna cantando em evento ao ar livre",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "canto-4": {
+  "alt": "Aluno cantando no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "canto-5": {
+  "alt": "Alunos de canto e violão se apresentando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "teclado-1": {
+  "alt": "Aluna tocando teclado e sorrindo",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "teclado-2": {
+  "alt": "Aluno de teclado cantando",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "banda-1": {
+  "alt": "Banda de alunos vista de cima no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "banda-2": {
+  "alt": "Aluno de banda tocando baixo",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "artista-daniel-1": {
+  "alt": "Daniel Barbosa, baterista do Luan Santana, em workshop de bateria",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "artista-daniel-2": {
+  "alt": "Equipe Musicalize com Daniel Barbosa no evento Somos Drummers",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "artista-confessori": {
+  "alt": "Workshop de bateria com Ricardo Confessori, ex-Angra e ex-Shaman",
+  "w": 1080,
+  "h": 720,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1080,
+    720
+   ]
+  ]
+ },
+ "artista-guitarras-1": {
+  "alt": "Workshop de guitarra com Théo Dornellas, Patrick Souza e Maurício Alabama",
+  "w": 1080,
+  "h": 716,
+  "sizes": [
+   [
+    800,
+    530
+   ],
+   [
+    1080,
+    716
+   ]
+  ]
+ },
+ "artista-guitarras-2": {
+  "alt": "Plateia do workshop de guitarra da Musicalize",
+  "w": 1080,
+  "h": 1246,
+  "sizes": [
+   [
+    480,
+    554
+   ],
+   [
+    900,
+    1038
+   ]
+  ]
+ },
+ "artista-theo-1": {
+  "alt": "Evento de guitarra com Théo Dornellas",
+  "w": 1080,
+  "h": 720,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1080,
+    720
+   ]
+  ]
+ },
+ "artista-theo-2": {
+  "alt": "Plateia do evento de guitarra com Théo Dornellas",
+  "w": 1080,
+  "h": 720,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1080,
+    720
+   ]
+  ]
+ },
+ "violino-1": {
+  "alt": "Aluna de violino da Musicalize em depoimento",
+  "w": 1080,
+  "h": 1080,
+  "sizes": [
+   [
+    800,
+    800
+   ],
+   [
+    1080,
+    1080
+   ]
+  ]
+ }
+}

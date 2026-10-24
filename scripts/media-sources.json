@@ -1,0 +1,221 @@
+{
+  "_info": "Mapa chave -> arquivo original (pasta 'fotos' do pacote de assets). Rode: python3 scripts/media.py <pasta-fotos>",
+  "photos": {
+    "hero": {
+      "src": "27102026-IMG_8105.jpg",
+      "alt": "Banda de alunos da Musicalize tocando no palco com o telão da escola ao fundo"
+    },
+    "palco": {
+      "src": "27102026-IMG_7921.jpg",
+      "alt": "Aluno de guitarra no palco de um evento da Musicalize"
+    },
+    "aula-baixo": {
+      "src": "20 - Workshop de baixo (professor e alunos).png",
+      "alt": "Professor de baixo da Musicalize dando aula para alunos"
+    },
+    "escola": {
+      "src": "24.png",
+      "alt": "Espaço da Musicalize com a frase Deixe a música falar por você"
+    },
+    "pro-guitarra-1": {
+      "src": "27102026-IMG_7305.jpg",
+      "alt": "Guitarrista no palco da Musicalize"
+    },
+    "pro-baixo-1": {
+      "src": "27102026-IMG_7326.jpg",
+      "alt": "Baixista no palco com o telão da Musicalize"
+    },
+    "pro-baixo-2": {
+      "src": "27102026-IMG_7348.jpg",
+      "alt": "Baixista sob as luzes do palco"
+    },
+    "pro-baixo-3": {
+      "src": "27102026-IMG_7351.jpg",
+      "alt": "Baixista tocando em show da Musicalize"
+    },
+    "pro-baixo-4": {
+      "src": "27102026-IMG_7360.jpg",
+      "alt": "Baixista em frente ao telão da Musicalize"
+    },
+    "pro-canto-1": {
+      "src": "27102026-IMG_7376.jpg",
+      "alt": "Aluna de canto se apresentando no palco"
+    },
+    "pro-guitarra-2": {
+      "src": "27102026-IMG_7918.jpg",
+      "alt": "Aluno de guitarra sob luz roxa no palco"
+    },
+    "pro-guitarra-3": {
+      "src": "27102026-IMG_7927.jpg",
+      "alt": "Aluna de guitarra tocando em show"
+    },
+    "pro-bateria-1": {
+      "src": "27102026-IMG_7955.jpg",
+      "alt": "Aluno de bateria no palco da Musicalize"
+    },
+    "pro-baixo-5": {
+      "src": "27102026-IMG_8020.jpg",
+      "alt": "Aluna sorrindo durante apresentação"
+    },
+    "pro-guitarra-4": {
+      "src": "27102026-IMG_8064.jpg",
+      "alt": "Aluno de guitarra com o telão da Musicalize"
+    },
+    "pro-guitarra-5": {
+      "src": "27102026-IMG_8080.jpg",
+      "alt": "Guitarrista de cabelo longo tocando no palco"
+    },
+    "pro-canto-2": {
+      "src": "27102026-IMG_8090.jpg",
+      "alt": "Aluna de canto cantando no palco"
+    },
+    "pro-canto-3": {
+      "src": "27102026-IMG_8099.jpg",
+      "alt": "Aluna cantando em foto preto e branco"
+    },
+    "pro-bateria-2": {
+      "src": "27102026-IMG_8160.jpg",
+      "alt": "Aluno de bateria em show da Musicalize"
+    },
+    "ukulele-1": {
+      "src": "1.png",
+      "alt": "Aluna tocando ukulele na Musicalize"
+    },
+    "violao-1": {
+      "src": "2.png",
+      "alt": "Aluna tocando violão"
+    },
+    "violao-2": {
+      "src": "3.png",
+      "alt": "Aluna cantando e tocando violão"
+    },
+    "guitarra-1": {
+      "src": "2 - Evento de Guitarra (aluno).png",
+      "alt": "Aluno de guitarra em apresentação"
+    },
+    "guitarra-2": {
+      "src": "16.png",
+      "alt": "Guitarrista no palco"
+    },
+    "guitarra-3": {
+      "src": "17.png",
+      "alt": "Aluno cantando e tocando guitarra"
+    },
+    "guitarra-prof": {
+      "src": "8 - Evento de Guitarra (Professor).png",
+      "alt": "Professor de guitarra da Musicalize"
+    },
+    "baixo-1": {
+      "src": "14 - Evento de Baixo (aluna).png",
+      "alt": "Aluna de baixo em apresentação"
+    },
+    "baixo-2": {
+      "src": "13 - Evento de Baixo (aluno).png",
+      "alt": "Aluno de baixo em apresentação"
+    },
+    "baixo-3": {
+      "src": "18.png",
+      "alt": "Aluna tocando baixo no palco"
+    },
+    "baixo-4": {
+      "src": "6.png",
+      "alt": "Aluno de baixo tocando"
+    },
+    "baixo-prof": {
+      "src": "12 - Workshop de Baixo (Professor).png",
+      "alt": "Professor de baixo da Musicalize"
+    },
+    "bateria-1": {
+      "src": "17 - Evento de Bateria (aluno).png",
+      "alt": "Aluno de bateria tocando"
+    },
+    "bateria-2": {
+      "src": "16 - Evento de Bateria (aluna).png",
+      "alt": "Aluna de bateria tocando"
+    },
+    "bateria-3": {
+      "src": "3 - Evento de Bateria (aluna).png",
+      "alt": "Aluna de bateria sorrindo"
+    },
+    "bateria-4": {
+      "src": "29.png",
+      "alt": "Aluno de bateria em aula"
+    },
+    "bateria-5": {
+      "src": "19.png",
+      "alt": "Aluna tocando bateria no palco"
+    },
+    "bateria-prof": {
+      "src": "26 - (professor).png",
+      "alt": "Professor de bateria da Musicalize"
+    },
+    "canto-1": {
+      "src": "4 -  Evento de Vocal (aluna).png",
+      "alt": "Aluna de canto em apresentação"
+    },
+    "canto-2": {
+      "src": "5 -  Evento de Vocal (aluna).png",
+      "alt": "Aluna de canto cantando"
+    },
+    "canto-3": {
+      "src": "14.png",
+      "alt": "Aluna cantando em evento ao ar livre"
+    },
+    "canto-4": {
+      "src": "15.png",
+      "alt": "Aluno cantando no palco"
+    },
+    "canto-5": {
+      "src": "6 - Evento de Vocal (alunos).png",
+      "alt": "Alunos de canto e violão se apresentando"
+    },
+    "teclado-1": {
+      "src": "5 - evento de Teclado (aluna).png",
+      "alt": "Aluna tocando teclado e sorrindo"
+    },
+    "teclado-2": {
+      "src": "7 - Evento de Teclado (aluno).png",
+      "alt": "Aluno de teclado cantando"
+    },
+    "banda-1": {
+      "src": "32 - Evento de Bandas da escola).png",
+      "alt": "Banda de alunos vista de cima no palco"
+    },
+    "banda-2": {
+      "src": "15 - Evento de Bandas (aluno).png",
+      "alt": "Aluno de banda tocando baixo"
+    },
+    "artista-daniel-1": {
+      "src": "1 - Workshop de bateria com Daniel Barbosa, Baterista Luan Santana.png",
+      "alt": "Daniel Barbosa, baterista do Luan Santana, em workshop de bateria"
+    },
+    "artista-daniel-2": {
+      "src": "1 - Evento Sommos Drummers - Daniel Barbosa (Luan Santana).png",
+      "alt": "Equipe Musicalize com Daniel Barbosa no evento Somos Drummers"
+    },
+    "artista-confessori": {
+      "src": "25 - Workshop de Bateria com Ricardo Confessori (ex-Angra e ex-Shaman, Carreira Solo).png",
+      "alt": "Workshop de bateria com Ricardo Confessori, ex-Angra e ex-Shaman"
+    },
+    "artista-guitarras-1": {
+      "src": "10 - Workshop de Guitarra - Th*",
+      "alt": "Workshop de guitarra com Théo Dornellas, Patrick Souza e Maurício Alabama"
+    },
+    "artista-guitarras-2": {
+      "src": "11 - Workshop de Guitarra - Th*",
+      "alt": "Plateia do workshop de guitarra da Musicalize"
+    },
+    "artista-theo-1": {
+      "src": "22 - Evento de Guitarra com Th*",
+      "alt": "Evento de guitarra com Théo Dornellas"
+    },
+    "artista-theo-2": {
+      "src": "23 - Evento de Guitarra com Th*",
+      "alt": "Plateia do evento de guitarra com Théo Dornellas"
+    },
+    "violino-1": {
+      "src": "violino-depoimento.png",
+      "alt": "Aluna de violino da Musicalize em depoimento"
+    }
+  }
+}

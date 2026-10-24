@@ -12,6 +12,8 @@ public/               ← CSS, JS, fontes self-hosted, robots.txt, llms.txt, íc
 vercel.json           ← build, URLs limpas, cache e headers de segurança
 ```
 
+Seções da home: hero, números, método, cursos, palco, workshops com artistas, vídeos de alunos, depoimentos em vídeo, aula experimental, unidade, FAQ.
+
 Páginas geradas: `/`, `/cursos/{violao,guitarra,canto,bateria,banda,teclado,baixo,ukulele,violino}` e `404`.
 
 ## Rodar local
@@ -39,11 +41,18 @@ npm run build   # só gera dist/
 
 ## Conversão e tracking
 
-Todos os CTAs abrem o WhatsApp com mensagem pronta (por curso). O formulário "Monte sua aula experimental" qualifica o lead (instrumento, nível, período, pra quem é) e monta a mensagem. Eventos enviados ao `dataLayer`: `whatsapp_click` (com `cta_location` e `curso`) e `generate_lead`. Cole o GTM/GA4/Pixel no ponto marcado no `<head>` em `scripts/build.mjs`.
+Todos os CTAs abrem o WhatsApp com mensagem pronta (por curso). O formulário "Monte sua aula experimental" qualifica o lead (instrumento, nível, período, pra quem é) e monta a mensagem. Eventos enviados ao `dataLayer`: `whatsapp_click` (com `cta_location` e `curso`), `generate_lead`, `testimonial_play` e `video_sound_on`. Cole o GTM/GA4/Pixel no ponto marcado no `<head>` em `scripts/build.mjs`.
 
-## Imagens
+## Fotos e vídeos
 
-As fotos vêm direto dos CDNs atuais (Cloudinary da rede Musicalize e Wix da unidade), com conversão automática pra WebP/AVIF. **Antes de cancelar o Wix**, baixe as fotos pra `public/assets/img/` e troque os helpers `wix()`/`cl()` em `scripts/content.mjs` pra apontar pros arquivos locais.
+Tudo é servido do próprio site (sem Wix nem Cloudinary). Os originais ficam fora do repositório; o que vai pro site é gerado por dois scripts:
+
+```bash
+python3 scripts/media.py <pasta-fotos>                     # fotos → AVIF + WebP em public/assets/img + scripts/media.json
+bash scripts/videos.sh <pasta-videos> <pasta-depoimentos>  # vídeos → MP4 leve + capa em public/assets/video
+```
+
+Pra trocar ou adicionar uma foto, inclua a chave em `scripts/media-sources.json`, rode `media.py` e use a chave em `scripts/content.mjs`. Reels, depoimentos (com os textos das legendas de cada vídeo) e workshops com artistas também ficam em `content.mjs`.
 
 ## Confirmar com a escola antes de publicar
 

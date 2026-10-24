@@ -125,6 +125,60 @@
     }, { threshold: 0.15 }).observe(heroEl);
   }
 
+  /* Vídeos: só um tocando com som por vez */
+  const silenceOthers = (current) => {
+    document.querySelectorAll('video').forEach((v) => {
+      if (v === current) return;
+      if (v.closest('.depo')) v.pause();
+      else if (!v.muted) { v.muted = true; v.closest('.reel, .artist')?.classList.remove('is-sound'); }
+    });
+  };
+
+  /* Reels: tocam mudos quando aparecem na tela, toque liga o som */
+  const reelVideos = document.querySelectorAll('.reel__video, .artist__video');
+  if (reelVideos.length) {
+    const vIO = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        const v = en.target;
+        if (en.isIntersecting && !reduce) v.play().catch(() => {});
+        else if (!en.isIntersecting) v.pause();
+      });
+    }, { threshold: 0.55 });
+    reelVideos.forEach((v) => {
+      vIO.observe(v);
+      const box = v.closest('.reel, .artist');
+      const toggle = () => {
+        const on = v.muted;
+        if (on) silenceOthers(v);
+        v.muted = !on;
+        box.classList.toggle('is-sound', on);
+        box.querySelector('.reel__sound')?.setAttribute('aria-label', on ? 'Desativar som' : 'Ativar som');
+        if (v.paused) v.play().catch(() => {});
+        if (on) track('video_sound_on', { video: v.getAttribute('src') });
+      };
+      v.addEventListener('click', toggle);
+      box.querySelector('.reel__sound')?.addEventListener('click', toggle);
+    });
+  }
+
+  /* Depoimentos: carrega o vídeo só no clique */
+  document.querySelectorAll('.depo__play').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.depo');
+      const v = document.createElement('video');
+      v.src = btn.dataset.video;
+      v.controls = true;
+      v.playsInline = true;
+      v.className = 'depo__video';
+      v.setAttribute('aria-label', btn.getAttribute('aria-label'));
+      v.addEventListener('play', () => silenceOthers(v));
+      btn.replaceWith(v);
+      card.classList.add('is-playing');
+      v.play().catch(() => {});
+      track('testimonial_play', { video: btn.dataset.video });
+    });
+  });
+
   /* Rastreia cliques no WhatsApp (GA4/GTM/Meta via dataLayer) */
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href*="wa.me"]');

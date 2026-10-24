@@ -4,13 +4,14 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  SITE, BIZ, IMG, cl, wix, wa, WA_DEFAULT, POSTERS, MOMENTS, COURSES, EVENTS, HOME_FAQ, courseFaq,
+  SITE, BIZ, LOGO, wa, WA_DEFAULT, REELS, DEPOS, ARTISTS, GALLERY, COURSES, EVENTS, HOME_FAQ, courseFaq,
 } from './content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'dist');
 const PUB = join(ROOT, 'public');
 const TODAY = new Date().toISOString().slice(0, 10);
+const MEDIA = JSON.parse(await readFile(join(ROOT, 'scripts', 'media.json'), 'utf8'));
 
 const hash = async (f) => createHash('sha1').update(await readFile(join(PUB, f))).digest('hex').slice(0, 10);
 const V = { css: await hash('assets/css/style.css'), js: await hash('assets/js/main.js') };
@@ -46,8 +47,55 @@ const split = (text, start = 0) =>
 const btnWa = (label, { track = 'cta', curso = '', cls = 'btn btn--y btn--lg', text } = {}) =>
   `<a class="${cls}" href="${text ? wa(text) : WA_DEFAULT}" target="_blank" rel="noopener" data-track="${track}"${curso ? ` data-curso="${curso}"` : ''}>${I.wa}<span>${label}</span></a>`;
 
-const shot = (item, { w = 540, h = 840, wide = false, lazy = true } = {}) =>
-  `<figure class="shot${wide ? ' shot--wide' : ''}"><img src="${wix(item.id, w, h)}" alt="${esc(item.alt || `${item.label} na Musicalize Camboriú`)}" width="${w}" height="${h}"${lazy ? ' loading="lazy" decoding="async"' : ''}><figcaption>${esc(item.label)}</figcaption></figure>`;
+/* ---------- Imagens locais (AVIF + WebP responsivos) ---------- */
+const media = (key) => {
+  const m = MEDIA[key];
+  if (!m) throw new Error(`imagem não encontrada no media.json: ${key}`);
+  return m;
+};
+const imgUrl = (key, w, ext = 'webp') => `/assets/img/${key}-${w}.${ext}`;
+const largest = (key) => media(key).sizes.at(-1);
+const absImg = (key) => `${SITE}${imgUrl(key, largest(key)[0])}`;
+const srcset = (key, ext) => media(key).sizes.map(([w]) => `${imgUrl(key, w, ext)} ${w}w`).join(', ');
+const pic = (key, { sizes = '100vw', eager = false, alt, cls = '' } = {}) => {
+  const m = media(key);
+  const [w, h] = m.sizes[0];
+  return `<picture><source type="image/avif" srcset="${srcset(key, 'avif')}" sizes="${sizes}"><img${cls ? ` class="${cls}"` : ''} src="${imgUrl(key, w)}" srcset="${srcset(key, 'webp')}" sizes="${sizes}" alt="${esc(alt ?? m.alt)}" width="${w}" height="${h}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></picture>`;
+};
+
+const shot = (key, label, { wide = false, eager = false } = {}) =>
+  `<figure class="shot${wide ? ' shot--wide' : ''}">${pic(key, { sizes: wide ? '(max-width: 900px) 60vw, 330px' : '(max-width: 900px) 45vw, 250px', eager })}${label ? `<figcaption>${esc(label)}</figcaption>` : ''}</figure>`;
+
+const strip = (items, { speed = 80, rev = false } = {}) =>
+  `<div class="strip${rev ? ' strip--rev' : ''}" style="--speed:${speed}s"><div class="strip__track">${[...items, ...items].map((html, i) => (i >= items.length ? html.replace('<figure', '<figure aria-hidden="true"') : html)).join('')}</div></div>`;
+
+const LABEL = { violao: 'Violão', guitarra: 'Guitarra', canto: 'Canto', bateria: 'Bateria', teclado: 'Teclado', baixo: 'Baixo', ukulele: 'Ukulele', violino: 'Violino', banda: 'Banda', pro: 'Palco', escola: 'Escola', aula: 'Aula' };
+const labelOf = (key) => LABEL[key.replace(/^pro-/, '').split('-')[0]] || '';
+
+const reelCard = (r) => `<figure class="reel" data-reveal>
+  <video class="reel__video" src="/assets/video/reel-${r.key}.mp4" poster="/assets/video/reel-${r.key}.webp" muted loop playsinline preload="none" aria-label="${esc(r.text)}"></video>
+  <button class="reel__sound" type="button" aria-label="Ativar som"><span class="reel__on">Som</span></button>
+  <figcaption><b>${esc(r.label)}</b><span>${esc(r.text)}</span></figcaption>
+</figure>`;
+
+const depoCard = (d, i = 0) => `<article class="depo" data-reveal style="--d:${(i % 3) * 80}ms">
+  <button class="depo__play" type="button" data-video="/assets/video/depo-${d.n}.mp4" aria-label="Assistir depoimento: ${esc(d.who)}">
+    <img src="/assets/video/depo-${d.n}.webp" alt="${esc(d.who)} da Musicalize em depoimento" width="540" height="540" loading="lazy" decoding="async">
+    <span class="depo__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+  </button>
+  <div class="depo__body"><span class="depo__who">${esc(d.who)}</span><ul>${d.points.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div>
+</article>`;
+
+const depoSection = (list, { title = 'Quem estuda aqui <span class="serif y">conta como é.</span>', lead = 'Depoimentos em vídeo de alunos de verdade: gente que tinha o violão parado em casa, que achava que era tarde pra aprender e que hoje toca as músicas favoritas.' } = {}) => `
+<section class="section" id="depoimentos" aria-labelledby="depo-t">
+  <div class="container">
+    <div class="section__head">
+      <div data-reveal><span class="eyebrow">Depoimentos</span><h2 class="h2" id="depo-t">${title}</h2></div>
+      <p class="lead" data-reveal style="--d:100ms">${lead}</p>
+    </div>
+    <div class="depos">${list.map(depoCard).join('')}</div>
+  </div>
+</section>`;
 
 /* ---------- Schema.org ---------- */
 const SCHOOL_ID = `${SITE}/#escola`;
@@ -59,8 +107,8 @@ const school = {
   description: 'Escola de música no Centro de Camboriú (SC) com aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele, violino e formação de bandas. Método prático, repertório e experiência real de palco. Mais de 3 mil alunos ensinados.',
   slogan: 'Aprenda tocando. Viva o palco.',
   url: `${SITE}/`,
-  logo: IMG.logo,
-  image: [cl(IMG.hero, 1600), cl(IMG.stage, 1600)],
+  logo: `${SITE}/assets/img/logo-80.png`,
+  image: [absImg('hero'), absImg('palco'), absImg('pro-canto-1')],
   telephone: BIZ.phoneE164,
   address: {
     '@type': 'PostalAddress',
@@ -113,7 +161,7 @@ const header = () => `
 <header class="header">
   <div class="container header__inner">
     <a class="brand" href="/" aria-label="Musicalize Camboriú, página inicial">
-      <img class="brand__logo" src="${IMG.logo}" alt="Musicalize" height="34">
+      <img class="brand__logo" src="${LOGO.src}" alt="Musicalize Escola de Música" width="${LOGO.w}" height="${LOGO.h}">
       <span class="brand__text"><span class="brand__city">Camboriú</span></span>
     </a>
     <nav class="nav" aria-label="Principal">
@@ -133,7 +181,7 @@ const footer = () => `
   <div class="container">
     <div class="footer__grid">
       <div>
-        <a class="brand" href="/" aria-label="Musicalize Camboriú"><img class="brand__logo" src="${IMG.logo}" alt="Musicalize" height="34" loading="lazy"><span class="brand__text"><span class="brand__city">Camboriú</span></span></a>
+        <a class="brand" href="/" aria-label="Musicalize Camboriú"><img class="brand__logo" src="${LOGO.src}" alt="Musicalize Escola de Música" width="${LOGO.w}" height="${LOGO.h}" loading="lazy"><span class="brand__text"><span class="brand__city">Camboriú</span></span></a>
         <p>Escola de música no Centro de Camboriú. Método, repertório e palco pra quem quer tocar de verdade. Unidade da rede <a class="link" href="${BIZ.network}" target="_blank" rel="noopener">Musicalize</a>.</p>
       </div>
       <div>
@@ -203,10 +251,8 @@ const layout = ({ path, title, description, body, graph, preloadImg }) => {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumo para IA (llms.txt)">
-<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-<link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
 <link rel="preload" href="/assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-${preloadImg ? `<link rel="preload" as="image" href="${preloadImg.src}"${preloadImg.srcset ? ` imagesrcset="${preloadImg.srcset}" imagesizes="100vw"` : ''} fetchpriority="high">` : ''}
+${preloadImg ? `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset(preloadImg.key, 'avif')}" imagesizes="${preloadImg.sizes || '100vw'}" fetchpriority="high">` : ''}
 <link rel="stylesheet" href="/assets/css/style.css?v=${V.css}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/js/main.js?v=${V.js}" defer></script>
@@ -231,10 +277,8 @@ const marquee = (items, { dark = false, speed = 34 } = {}) => {
 };
 
 const courseCard = (c, i) => {
-  const poster = POSTERS.find((p) => p.c === c.slug) || { id: MOMENTS[0].id, label: c.name };
-  const img = c.feature ? MOMENTS[0] : poster;
   return `<article class="course${c.feature ? ' course--feature' : ''}" data-tilt data-reveal style="--d:${(i % 3) * 90}ms">
-    <div class="course__media"><span class="course__tag">${esc(c.program)}</span><img src="${wix(img.id, 720, c.feature ? 800 : 800)}" alt="Aula de ${esc(c.nounLower)} na Musicalize Camboriú" width="720" height="800" loading="lazy" decoding="async"></div>
+    <div class="course__media"><span class="course__tag">${esc(c.program)}</span>${pic(c.photos[0], { sizes: '(max-width: 620px) 92vw, (max-width: 1080px) 46vw, 400px', alt: `Aula de ${c.nounLower} na Musicalize Camboriú` })}</div>
     <div class="course__body">
       <div class="course__title"><h3><a class="course__link" href="/cursos/${c.slug}">${c.slug === 'banda' ? 'Formação de bandas' : c.name}</a></h3><span class="course__arrow" aria-hidden="true">${I.arrowPlain}</span></div>
       <p>${esc(c.card)}</p>
@@ -320,13 +364,11 @@ const finalCta = (headline = 'Aquela música que você sempre quis tocar <span c
 </section>`;
 
 /* ---------- Home ---------- */
-const heroSrcset = [800, 1400, 2000].map((w) => `${cl(IMG.hero, w)} ${w}w`).join(', ');
 
 const home = () => {
-  const half = Math.ceil(POSTERS.length / 2);
   const body = `
 <section class="hero" aria-labelledby="hero-t">
-  <div class="hero__media"><img src="${cl(IMG.hero, 1400)}" srcset="${heroSrcset}" sizes="100vw" alt="Alunos da Musicalize tocando juntos" fetchpriority="high" decoding="async"></div>
+  <div class="hero__media">${pic('hero', { eager: true })}</div>
   <div class="container hero__grid">
     <div>
       <span class="eyebrow fade-in" style="--d:150ms">Musicalize Camboriú · SC</span>
@@ -368,7 +410,7 @@ ${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukule
       <span class="eyebrow">O método</span>
       <h2 class="h2" id="metodo-t" style="margin-top:16px">Aula solta não forma músico. <span class="serif">Jornada forma.</span></h2>
       <p class="lead">Muita gente começa música, empolga no primeiro mês e para. Quase sempre não é falta de talento, é falta de direção. Aqui cada aluno sabe onde está, pra onde vai e o que vai tocar no caminho.</p>
-      <div class="method__photo parallax-img"><img src="${cl(IMG.method, 1000)}" alt="Aula prática na Musicalize" width="1000" height="750" loading="lazy" decoding="async"></div>
+      <div class="method__photo parallax-img">${pic('aula-baixo', { sizes: '(max-width: 900px) 92vw, 520px' })}</div>
     </div>
     <ol class="pillars">
       <li class="pillar"><span class="pillar__num">01</span><h3>Direção <span class="dot"></span></h3><p>Você entende sua evolução. Cada etapa tem objetivo claro, acompanhamento do professor e música nova pra tocar.</p></li>
@@ -395,7 +437,7 @@ ${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukule
       <h2 class="h2" id="palco-t" style="margin-top:16px">Aqui o aluno <span class="serif">sobe no palco.</span></h2>
       <p class="lead">Estudar sem nunca tocar pra ninguém é metade da música. Por isso o palco faz parte da jornada, com eventos da rede Musicalize ao longo do ano.</p>
       ${btnWa('Quero tocar no palco', { track: 'palco', cls: 'btn btn--dark btn--lg', text: 'Oi! Vim pelo site e quero saber como participar das apresentações e bandas da Musicalize Camboriú.' })}
-      <div class="stage__photo"><img src="${cl(IMG.stage, 1100)}" alt="Alunos da Musicalize se apresentando no palco" width="1100" height="756" loading="lazy" decoding="async"></div>
+      <div class="stage__photo">${pic('palco', { sizes: '(max-width: 900px) 92vw, 520px' })}</div>
     </div>
     <div class="events">
       ${EVENTS.map((e, i) => `<article class="event" style="--i:${i}" data-reveal="scale"><div class="event__top"><span class="event__num">${String(i + 1).padStart(2, '0')}</span><span class="event__pill">${esc(e.pill)}</span></div><h3>${esc(e.title)}</h3><p>${esc(e.text)}</p><ul class="event__tags">${e.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></article>`).join('')}
@@ -403,23 +445,44 @@ ${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukule
   </div>
 </section>
 
+<section class="section artists-sec" id="artistas" aria-labelledby="artistas-t">
+  <div class="container">
+    <div class="section__head">
+      <div data-reveal><span class="eyebrow">Workshops</span><h2 class="h2" id="artistas-t">Gente grande da música <span class="serif y">já passou por aqui.</span></h2></div>
+      <p class="lead" data-reveal style="--d:100ms">Além das aulas, a Musicalize traz músicos profissionais pra workshops, bate-papos e palco junto com os alunos.</p>
+    </div>
+    <div class="artists">
+      ${ARTISTS.map((a, i) => `<article class="artist${i === 0 ? ' artist--main' : ''}" data-reveal style="--d:${i * 90}ms">
+        <div class="artist__media">${a.reel ? `<video class="artist__video" src="/assets/video/reel-${a.reel}.mp4" poster="/assets/video/reel-${a.reel}.webp" muted loop playsinline preload="none" aria-label="${esc(a.name)} no ${esc(a.event)}"></video><button class="reel__sound" type="button" aria-label="Ativar som"><span class="reel__on">Som</span></button>` : pic(a.photos[0], { sizes: '(max-width: 900px) 92vw, 600px' })}</div>
+        <div class="artist__body"><span class="artist__event">${esc(a.event)}</span><h3>${esc(a.name)}</h3><p class="artist__role">${esc(a.role)}</p><p>${esc(a.text)}</p></div>
+      </article>`).join('')}
+    </div>
+  </div>
+  <div class="gallery" style="margin-top:clamp(28px,4vw,48px)">
+    ${strip(['artista-daniel-1', 'artista-guitarras-1', 'artista-daniel-2', 'artista-theo-2', 'artista-guitarras-2', 'artista-confessori', 'artista-theo-1'].map((k) => shot(k, '', { wide: true })), { speed: 70 })}
+  </div>
+</section>
+
 <section class="section" id="galeria" aria-labelledby="galeria-t">
   <div class="container">
     <div class="section__head">
-      <div data-reveal><span class="eyebrow">Quem toca aqui</span><h2 class="h2" id="galeria-t">Gente de Camboriú <span class="serif y">tocando de verdade.</span></h2></div>
-      <p class="lead" data-reveal style="--d:100ms">Registros de alunos da unidade em aula, em apresentação e no dia da entrega de certificado. Passa o mouse pra ver o instrumento.</p>
+      <div data-reveal><span class="eyebrow">Quem toca aqui</span><h2 class="h2" id="galeria-t">Aluno da Musicalize <span class="serif y">toca de verdade.</span></h2></div>
+      <p class="lead" data-reveal style="--d:100ms">Apresentações de alunos na escola, no Studio Silver Tape e na loja Cordas e Acordes. Toque no vídeo pra ligar o som.</p>
     </div>
   </div>
-  <div class="gallery">
-    <div class="strip" style="--speed:90s"><div class="strip__track">${[...POSTERS.slice(0, half), ...POSTERS.slice(0, half)].map((p, i) => shot(p, { lazy: true }).replace('<figure', i >= half ? '<figure aria-hidden="true"' : '<figure')).join('')}</div></div>
-    <div class="strip strip--rev" style="--speed:80s"><div class="strip__track">${[...MOMENTS, ...MOMENTS].map((m, i) => shot(m, { w: 600, h: 800, wide: true }).replace('<figure', i >= MOMENTS.length ? '<figure aria-hidden="true"' : '<figure')).join('')}</div></div>
-    <div class="strip" style="--speed:95s"><div class="strip__track">${[...POSTERS.slice(half), ...POSTERS.slice(half)].map((p, i) => shot(p).replace('<figure', i >= POSTERS.length - half ? '<figure aria-hidden="true"' : '<figure')).join('')}</div></div>
+  <div class="reels" aria-label="Vídeos de apresentações">${REELS.filter((r) => r.key !== 'daniel').map(reelCard).join('')}</div>
+  <div class="gallery" style="margin-top:clamp(28px,4vw,48px)">
+    ${strip(GALLERY.portrait.slice(0, 12).map((k) => shot(k, labelOf(k))), { speed: 90 })}
+    ${strip(GALLERY.landscape.map((k) => shot(k, labelOf(k), { wide: true })), { speed: 80, rev: true })}
+    ${strip(GALLERY.portrait.slice(12).map((k) => shot(k, labelOf(k))), { speed: 95 })}
   </div>
   <div class="container gallery__foot">
-    <p class="lead" style="max-width:40ch">Tem vídeo novo de aluno toda semana no Instagram.</p>
+    <p class="lead" style="max-width:40ch">Tem mais vídeo de aluno no Instagram da escola.</p>
     <a class="btn btn--lg" href="${BIZ.instagram}" target="_blank" rel="noopener">${I.ig.replace('<svg', '<svg class="ico"')}<span>Seguir ${BIZ.instagramHandle}</span></a>
   </div>
 </section>
+
+${depoSection(DEPOS.slice(0, 9))}
 
 ${marquee(['Direção', 'Prática', 'Vivência', 'Repertório', 'Palco', 'Banda'], { dark: true, speed: 40 })}
 
@@ -431,7 +494,7 @@ ${finalCta()}
   const graph = [
     website,
     school,
-    { '@type': 'WebPage', '@id': `${SITE}/#webpage`, url: `${SITE}/`, name: 'Escola de Música em Camboriú | Musicalize Camboriú', isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': SCHOOL_ID }, inLanguage: 'pt-BR', primaryImageOfPage: cl(IMG.hero, 1600) },
+    { '@type': 'WebPage', '@id': `${SITE}/#webpage`, url: `${SITE}/`, name: 'Escola de Música em Camboriú | Musicalize Camboriú', isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': SCHOOL_ID }, inLanguage: 'pt-BR', primaryImageOfPage: absImg('hero') },
     faqLd(HOME_FAQ),
   ];
   return layout({
@@ -440,7 +503,7 @@ ${finalCta()}
     description: 'Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e violino no Centro de Camboriú (SC). Mais de 3 mil alunos. Agende sua aula experimental.',
     body,
     graph,
-    preloadImg: { src: cl(IMG.hero, 1400), srcset: heroSrcset },
+    preloadImg: { key: 'hero' },
   });
 };
 
@@ -448,8 +511,11 @@ ${finalCta()}
 const coursePage = (c) => {
   const title = c.h1 || `Aula de ${c.nounLower} em Camboriú`;
   const label = c.slug === 'banda' ? 'Formação de bandas' : c.name;
-  const shots = c.slug === 'banda' ? MOMENTS.filter((m) => m.label.startsWith('Apresentação')).slice(0, 2) : POSTERS.filter((p) => p.c === c.slug).slice(0, 2);
-  const more = c.slug === 'banda' ? MOMENTS.filter((m) => m.label.startsWith('Apresentação')) : POSTERS.filter((p) => p.c === c.slug);
+  const portraits = c.photos.filter((k) => media(k).h > media(k).w);
+  const shots = (portraits.length ? portraits : c.photos).slice(0, 2);
+  const more = c.photos;
+  const depos = DEPOS.filter((d) => d.c === c.slug || (c.slug === 'banda' && ['guitarra', 'bateria', 'baixo'].includes(d.c)));
+  const reels = REELS.filter((r) => r.key.replace(/\d$/, '') === c.slug || (c.slug === 'banda' && ['daniel', 'bateria', 'guitarra', 'baixo'].includes(r.key)));
   const faq = courseFaq(c);
   const waText = c.slug === 'banda'
     ? 'Oi! Vim pelo site e quero saber sobre a formação de bandas na Musicalize Camboriú.'
@@ -473,7 +539,7 @@ const coursePage = (c) => {
       </div>
     </div>
     <div class="collage fade-in" style="--d:400ms">
-      ${shots.map((s) => shot(s, { lazy: false })).join('')}
+      ${shots.map((k, i) => shot(k, c.slug === 'banda' ? 'Banda' : c.name, { eager: i === 0 })).join('')}
       <div class="collage__badge">${eq(10, 4)}</div>
     </div>
   </div>
@@ -509,7 +575,9 @@ ${marquee([label, c.program, 'Musicalize Camboriú'].concat([label, c.program, '
   </div>
 </section>
 
-${more.length > 2 ? `<section class="section--tight" aria-label="Alunos de ${esc(c.nounLower)}"><div class="strip" style="--speed:60s"><div class="strip__track">${[...more, ...more].map((s, i) => shot(s, s.id.includes('f003') ? { w: 600, h: 800, wide: true } : {}).replace('<figure', i >= more.length ? '<figure aria-hidden="true"' : '<figure')).join('')}</div></div></section>` : ''}
+${reels.length ? `<section class="section--tight" aria-label="Vídeos de ${esc(c.nounLower)}"><div class="reels">${reels.map(reelCard).join('')}</div></section>` : ''}
+${more.length > 2 ? `<section class="section--tight" aria-label="Fotos de ${esc(c.nounLower)}">${strip(more.map((k) => shot(k, '', { wide: media(k).w > media(k).h })), { speed: 60 })}</section>` : ''}
+${depos.length ? depoSection(depos.slice(0, 6), { title: `Quem faz ${esc(c.slug === 'banda' ? 'banda' : c.nounLower)} <span class="serif y">conta como é.</span>`, lead: 'Depoimentos em vídeo de alunos da Musicalize. Toque pra assistir.' }) : ''}
 
 ${startSection(presetMap[c.slug] || c.name)}
 ${placeSection()}
@@ -530,7 +598,7 @@ ${finalCta(`Sua primeira aula de ${esc(c.slug === 'banda' ? 'banda' : c.nounLowe
     {
       '@type': 'Course', '@id': `${url}#curso`, name: title, description: c.lead, url, inLanguage: 'pt-BR',
       provider: { '@id': SCHOOL_ID }, teaches: c.skills, coursePrerequisites: 'Nenhum. Turmas para iniciantes, intermediários e alunos em retomada.',
-      educationalLevel: 'Iniciante, intermediário e retomada', image: wix(shots[0].id, 720, 1120),
+      educationalLevel: 'Iniciante, intermediário e retomada', image: absImg(shots[0]),
     },
     {
       '@type': 'BreadcrumbList',
@@ -543,7 +611,7 @@ ${finalCta(`Sua primeira aula de ${esc(c.slug === 'banda' ? 'banda' : c.nounLowe
     { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${url}#curso` }, inLanguage: 'pt-BR' },
     faqLd(faq),
   ];
-  return layout({ path: `/cursos/${c.slug}`, title: `${title} | Musicalize Camboriú`, description, body, graph, preloadImg: { src: wix(shots[0].id, 540, 840) } });
+  return layout({ path: `/cursos/${c.slug}`, title: `${title} | Musicalize Camboriú`, description, body, graph, preloadImg: { key: shots[0], sizes: '(max-width: 900px) 60vw, 420px' } });
 };
 
 /* ---------- 404 ---------- */
@@ -557,7 +625,7 @@ const notFound = () => layout({
 
 /* ---------- Sitemap ---------- */
 const sitemap = () => {
-  const urls = [{ loc: `${SITE}/`, pr: '1.0', img: [cl(IMG.hero, 1600)] }]
+  const urls = [{ loc: `${SITE}/`, pr: '1.0', img: [absImg('hero'), absImg('palco'), absImg('pro-canto-1'), absImg('pro-bateria-1')] }]
     .concat(COURSES.map((c) => ({ loc: `${SITE}/cursos/${c.slug}`, pr: '0.8' })));
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -618,6 +686,14 @@ Onde se apresenta: ${c.stage.map(([n]) => n).join('; ')}.
 ## Eventos e palco (rede Musicalize)
 
 ${EVENTS.map((e) => `- ${e.title}: ${e.text} (${e.tags.join(', ')})`).join('\n')}
+
+## Workshops com artistas
+
+${ARTISTS.map((x) => `- ${x.name} (${x.role}), ${x.event}: ${x.text}`).join('\n')}
+
+## Depoimentos de alunos (resumo das legendas dos vídeos)
+
+${DEPOS.map((d) => `- ${d.who}: ${d.points.join('; ')}.`).join('\n')}
 
 ## Perguntas frequentes
 
