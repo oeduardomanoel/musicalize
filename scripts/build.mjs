@@ -63,6 +63,9 @@ const pic = (key, { sizes = '100vw', eager = false, alt, cls = '' } = {}) => {
   return `<picture><source type="image/avif" srcset="${srcset(key, 'avif')}" sizes="${sizes}"><img${cls ? ` class="${cls}"` : ''} src="${imgUrl(key, w)}" srcset="${srcset(key, 'webp')}" sizes="${sizes}" alt="${esc(alt ?? m.alt)}" width="${w}" height="${h}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></picture>`;
 };
 
+// Arte gráfica da marca para cursos sem foto própria (pauta musical + tipografia)
+const typeArt = (name, { big = false } = {}) => `<div class="type-art${big ? ' type-art--big' : ''}" role="img" aria-label="Aula de ${esc(name.toLowerCase())} na Musicalize Camboriú"><span class="type-art__staff" aria-hidden="true"></span><span class="type-art__word serif" aria-hidden="true">${esc(name)}</span>${eq(big ? 14 : 10, 5)}</div>`;
+
 const shot = (key, label, { wide = false, eager = false } = {}) =>
   `<figure class="shot${wide ? ' shot--wide' : ''}">${pic(key, { sizes: wide ? '(max-width: 900px) 60vw, 330px' : '(max-width: 900px) 45vw, 250px', eager })}${label ? `<figcaption>${esc(label)}</figcaption>` : ''}</figure>`;
 
@@ -278,7 +281,7 @@ const marquee = (items, { dark = false, speed = 34 } = {}) => {
 
 const courseCard = (c, i) => {
   return `<article class="course${c.feature ? ' course--feature' : ''}" data-tilt data-reveal style="--d:${(i % 3) * 90}ms">
-    <div class="course__media"><span class="course__tag">${esc(c.program)}</span>${pic(c.photos[0], { sizes: '(max-width: 620px) 92vw, (max-width: 1080px) 46vw, 400px', alt: `Aula de ${c.nounLower} na Musicalize Camboriú` })}</div>
+    <div class="course__media"><span class="course__tag">${esc(c.program)}</span>${c.photos.length ? pic(c.photos[0], { sizes: '(max-width: 620px) 92vw, (max-width: 1080px) 46vw, 400px', alt: `Aula de ${c.nounLower} na Musicalize Camboriú` }) : typeArt(c.name)}</div>
     <div class="course__body">
       <div class="course__title"><h3><a class="course__link" href="/cursos/${c.slug}">${c.slug === 'banda' ? 'Formação de bandas' : c.name}</a></h3><span class="course__arrow" aria-hidden="true">${I.arrowPlain}</span></div>
       <p>${esc(c.card)}</p>
@@ -538,10 +541,10 @@ const coursePage = (c) => {
         <a class="btn btn--lg" href="#comecar">Como começar ${I.arrow}</a>
       </div>
     </div>
-    <div class="collage fade-in" style="--d:400ms">
+    ${shots.length ? `<div class="collage fade-in" style="--d:400ms">
       ${shots.map((k, i) => shot(k, c.slug === 'banda' ? 'Banda' : c.name, { eager: i === 0 })).join('')}
       <div class="collage__badge">${eq(10, 4)}</div>
-    </div>
+    </div>` : `<div class="fade-in" style="--d:400ms">${typeArt(c.name, { big: true })}</div>`}
   </div>
 </section>
 
@@ -598,7 +601,7 @@ ${finalCta(`Sua primeira aula de ${esc(c.slug === 'banda' ? 'banda' : c.nounLowe
     {
       '@type': 'Course', '@id': `${url}#curso`, name: title, description: c.lead, url, inLanguage: 'pt-BR',
       provider: { '@id': SCHOOL_ID }, teaches: c.skills, coursePrerequisites: 'Nenhum. Turmas para iniciantes, intermediários e alunos em retomada.',
-      educationalLevel: 'Iniciante, intermediário e retomada', image: absImg(shots[0]),
+      educationalLevel: 'Iniciante, intermediário e retomada', image: absImg(shots[0] || 'hero'),
     },
     {
       '@type': 'BreadcrumbList',
@@ -611,7 +614,7 @@ ${finalCta(`Sua primeira aula de ${esc(c.slug === 'banda' ? 'banda' : c.nounLowe
     { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${url}#curso` }, inLanguage: 'pt-BR' },
     faqLd(faq),
   ];
-  return layout({ path: `/cursos/${c.slug}`, title: `${title} | Musicalize Camboriú`, description, body, graph, preloadImg: { key: shots[0], sizes: '(max-width: 900px) 60vw, 420px' } });
+  return layout({ path: `/cursos/${c.slug}`, title: `${title} | Musicalize Camboriú`, description, body, graph, preloadImg: shots[0] ? { key: shots[0], sizes: '(max-width: 900px) 60vw, 420px' } : null });
 };
 
 /* ---------- 404 ---------- */

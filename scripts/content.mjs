@@ -150,7 +150,7 @@ export const COURSES = [
     stage: [['Apresentações dos alunos', 'Palco']],
   },
   {
-    slug: 'violino', photos: ['violino-1'], name: 'Violino', program: 'Violino', nounLower: 'violino',
+    slug: 'violino', photos: [], name: 'Violino', program: 'Violino', nounLower: 'violino',
     card: 'Postura, arco e afinação com base sólida, do primeiro som às primeiras peças.',
     lead: 'Postura, arco e afinação com base sólida. A aula de violino na Musicalize Camboriú te leva do primeiro som limpo às primeiras músicas, com direção clara em cada etapa.',
     skills: ['Postura e empunhadura', 'Controle do arco', 'Afinação e percepção', 'Primeiras peças e repertório'],
