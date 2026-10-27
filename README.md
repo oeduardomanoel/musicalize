@@ -12,9 +12,9 @@ public/               ← CSS, JS, fontes self-hosted, robots.txt, llms.txt, íc
 vercel.json           ← build, URLs limpas, cache e headers de segurança
 ```
 
-Seções da home: hero, números, método, cursos, palco, workshops com artistas, vídeos de alunos, depoimentos em vídeo, aula experimental, unidade, FAQ.
+Seções da home: hero, vídeos de alunos, números, método, cursos, palco, workshops com artistas, depoimentos em vídeo, aula experimental, unidade, FAQ.
 
-Páginas geradas: `/`, `/cursos/{violao,guitarra,canto,bateria,banda,teclado,baixo,ukulele,violino}` e `404`.
+Páginas geradas: `/`, `/cursos/{violao,guitarra,canto,bateria,banda,teclado,baixo,ukulele}` e `404`.
 
 ## Rodar local
 
@@ -56,7 +56,6 @@ Pra trocar ou adicionar uma foto, inclua a chave em `scripts/media-sources.json`
 
 ## Confirmar com a escola antes de publicar
 
-- **Endereço**: usei o da bio do Instagram (Rua Gustavo Richard, 289, 2º andar). O site antigo mostra R. Ernesto F. Pereira, 17. Confirmar qual vale.
 - **Aula experimental grátis?** A rede anuncia como gratuita; o site não promete "grátis" por segurança.
 - **Horário de funcionamento** (adicionar `openingHours` no JSON-LD quando tiver).
 - **Musicalização infantil (Clubinho)** existe na rede; incluir se a unidade oferecer.

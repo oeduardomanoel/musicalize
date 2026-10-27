@@ -194,21 +194,6 @@
    ]
   ]
  },
- "pro-baixo-5": {
-  "alt": "Aluna sorrindo durante apresentação",
-  "w": 6000,
-  "h": 4000,
-  "sizes": [
-   [
-    800,
-    533
-   ],
-   [
-    1600,
-    1067
-   ]
-  ]
- },
  "pro-guitarra-4": {
   "alt": "Aluno de guitarra com o telão da Musicalize",
   "w": 6000,
@@ -524,21 +509,6 @@
    ]
   ]
  },
- "bateria-5": {
-  "alt": "Aluna tocando bateria no palco",
-  "w": 1080,
-  "h": 1920,
-  "sizes": [
-   [
-    480,
-    853
-   ],
-   [
-    900,
-    1600
-   ]
-  ]
- },
  "bateria-prof": {
   "alt": "Professor de bateria da Musicalize",
   "w": 1080,
@@ -791,6 +761,36 @@
    [
     1080,
     720
+   ]
+  ]
+ },
+ "baixo-6": {
+  "alt": "Aluna tocando baixo no palco",
+  "w": 1080,
+  "h": 1920,
+  "sizes": [
+   [
+    480,
+    853
+   ],
+   [
+    900,
+    1600
+   ]
+  ]
+ },
+ "pro-canto-4": {
+  "alt": "Aluna de canto sorrindo durante apresentação",
+  "w": 6000,
+  "h": 4000,
+  "sizes": [
+   [
+    800,
+    533
+   ],
+   [
+    1600,
+    1067
    ]
   ]
  }

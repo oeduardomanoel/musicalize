@@ -28,7 +28,7 @@ const og = `${base}<body style="width:1200px;height:630px;position:relative;over
 <div style="position:relative;display:flex;align-items:center;gap:16px;font-size:22px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#ffcc00"><span style="width:40px;height:3px;background:#ffcc00"></span>Musicalize Camboriú</div>
 <div style="position:relative;font-size:112px;line-height:.9;letter-spacing:-.055em;font-weight:850">Aprenda tocando.<br>Viva o <span style="font-family:S;font-style:italic;font-weight:400;color:#ffcc00;letter-spacing:-.02em">palco.</span></div>
 <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end">
-<div style="font-size:26px;color:#c9c4b8;font-weight:600;line-height:1.35">Escola de música em Camboriú (SC)<br><b style="color:#f6f3ec">+3 mil alunos · Aula experimental</b></div>
+<div style="font-size:26px;color:#c9c4b8;font-weight:600;line-height:1.35">Escola de música em Camboriú (SC)<br><b style="color:#f6f3ec">+5 mil alunos · Aula experimental</b></div>
 ${bars(18, 110, 12, 8)}
 </div></body>`;
 

@@ -53,10 +53,6 @@
       "src": "27102026-IMG_7955.jpg",
       "alt": "Aluno de bateria no palco da Musicalize"
     },
-    "pro-baixo-5": {
-      "src": "27102026-IMG_8020.jpg",
-      "alt": "Aluna sorrindo durante apresentação"
-    },
     "pro-guitarra-4": {
       "src": "27102026-IMG_8064.jpg",
       "alt": "Aluno de guitarra com o telão da Musicalize"
@@ -141,10 +137,6 @@
       "src": "29.png",
       "alt": "Aluno de bateria em aula"
     },
-    "bateria-5": {
-      "src": "19.png",
-      "alt": "Aluna tocando bateria no palco"
-    },
     "bateria-prof": {
       "src": "26 - (professor).png",
       "alt": "Professor de bateria da Musicalize"
@@ -212,6 +204,14 @@
     "artista-theo-2": {
       "src": "23 - Evento de Guitarra com Th*",
       "alt": "Plateia do evento de guitarra com Théo Dornellas"
+    },
+    "baixo-6": {
+      "src": "19.png",
+      "alt": "Aluna tocando baixo no palco"
+    },
+    "pro-canto-4": {
+      "src": "27102026-IMG_8020.jpg",
+      "alt": "Aluna de canto sorrindo durante apresentação"
     }
   }
 }

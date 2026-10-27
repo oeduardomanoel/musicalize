@@ -63,16 +63,13 @@ const pic = (key, { sizes = '100vw', eager = false, alt, cls = '' } = {}) => {
   return `<picture><source type="image/avif" srcset="${srcset(key, 'avif')}" sizes="${sizes}"><img${cls ? ` class="${cls}"` : ''} src="${imgUrl(key, w)}" srcset="${srcset(key, 'webp')}" sizes="${sizes}" alt="${esc(alt ?? m.alt)}" width="${w}" height="${h}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></picture>`;
 };
 
-// Arte gráfica da marca para cursos sem foto própria (pauta musical + tipografia)
-const typeArt = (name, { big = false } = {}) => `<div class="type-art${big ? ' type-art--big' : ''}" role="img" aria-label="Aula de ${esc(name.toLowerCase())} na Musicalize Camboriú"><span class="type-art__staff" aria-hidden="true"></span><span class="type-art__word serif" aria-hidden="true">${esc(name)}</span>${eq(big ? 14 : 10, 5)}</div>`;
-
 const shot = (key, label, { wide = false, eager = false } = {}) =>
   `<figure class="shot${wide ? ' shot--wide' : ''}">${pic(key, { sizes: wide ? '(max-width: 900px) 60vw, 330px' : '(max-width: 900px) 45vw, 250px', eager })}${label ? `<figcaption>${esc(label)}</figcaption>` : ''}</figure>`;
 
 const strip = (items, { speed = 80, rev = false } = {}) =>
   `<div class="strip${rev ? ' strip--rev' : ''}" style="--speed:${speed}s"><div class="strip__track">${[...items, ...items].map((html, i) => (i >= items.length ? html.replace('<figure', '<figure aria-hidden="true"') : html)).join('')}</div></div>`;
 
-const LABEL = { violao: 'Violão', guitarra: 'Guitarra', canto: 'Canto', bateria: 'Bateria', teclado: 'Teclado', baixo: 'Baixo', ukulele: 'Ukulele', violino: 'Violino', banda: 'Banda', pro: 'Palco', escola: 'Escola', aula: 'Aula' };
+const LABEL = { violao: 'Violão', guitarra: 'Guitarra', canto: 'Canto', bateria: 'Bateria', teclado: 'Teclado', baixo: 'Baixo', ukulele: 'Ukulele', banda: 'Banda', pro: 'Palco', escola: 'Escola', aula: 'Aula' };
 const labelOf = (key) => LABEL[key.replace(/^pro-/, '').split('-')[0]] || '';
 
 const reelCard = (r) => `<figure class="reel" data-reveal>
@@ -107,7 +104,7 @@ const school = {
   '@id': SCHOOL_ID,
   name: BIZ.name,
   alternateName: ['Escola de Música Musicalize Camboriú', 'Musicalize Escola de Música Camboriú'],
-  description: 'Escola de música no Centro de Camboriú (SC) com aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele, violino e formação de bandas. Método prático, repertório e experiência real de palco. Mais de 3 mil alunos ensinados.',
+  description: 'Escola de música no Centro de Camboriú (SC) com aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas. Método prático, repertório e experiência real de palco. Mais de 5 mil alunos ensinados.',
   slogan: 'Aprenda tocando. Viva o palco.',
   url: `${SITE}/`,
   logo: `${SITE}/assets/img/logo-80.png`,
@@ -118,8 +115,10 @@ const school = {
     streetAddress: BIZ.street,
     addressLocality: BIZ.city,
     addressRegion: BIZ.state,
+    postalCode: BIZ.postalCode,
     addressCountry: BIZ.country,
   },
+  geo: { '@type': 'GeoCoordinates', latitude: BIZ.geo.lat, longitude: BIZ.geo.lng },
   hasMap: BIZ.mapsLink,
   areaServed: [
     { '@type': 'City', name: 'Camboriú' },
@@ -131,7 +130,7 @@ const school = {
   },
   sameAs: [BIZ.instagram, BIZ.facebook],
   parentOrganization: { '@type': 'Organization', name: 'Musicalize Escola de Música', url: BIZ.network },
-  knowsAbout: ['Aula de violão', 'Aula de guitarra', 'Aula de baixo', 'Aula de bateria', 'Aula de teclado', 'Aula de canto', 'Técnica vocal', 'Aula de ukulele', 'Aula de violino', 'Formação de bandas'],
+  knowsAbout: ['Aula de violão', 'Aula de guitarra', 'Aula de baixo', 'Aula de bateria', 'Aula de teclado', 'Aula de canto', 'Técnica vocal', 'Aula de ukulele', 'Formação de bandas'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Cursos de música',
@@ -212,7 +211,6 @@ const footer = () => `
         </ul>
       </div>
     </div>
-    <div class="footer__big" aria-hidden="true">MUSICALIZE</div>
     <div class="footer__bottom">
       <span>© ${new Date().getFullYear()} Musicalize Camboriú. Todos os direitos reservados.</span>
       <span>Escola de música em Camboriú, SC</span>
@@ -281,7 +279,7 @@ const marquee = (items, { dark = false, speed = 34 } = {}) => {
 
 const courseCard = (c, i) => {
   return `<article class="course${c.feature ? ' course--feature' : ''}" data-tilt data-reveal style="--d:${(i % 3) * 90}ms">
-    <div class="course__media"><span class="course__tag">${esc(c.program)}</span>${c.photos.length ? pic(c.photos[0], { sizes: '(max-width: 620px) 92vw, (max-width: 1080px) 46vw, 400px', alt: `Aula de ${c.nounLower} na Musicalize Camboriú` }) : typeArt(c.name)}</div>
+    <div class="course__media"><span class="course__tag">${esc(c.program)}</span>${c.photos.length ? pic(c.photos[0], { sizes: '(max-width: 620px) 92vw, (max-width: 1080px) 46vw, 400px', alt: `Aula de ${c.nounLower} na Musicalize Camboriú` }) : ''}</div>
     <div class="course__body">
       <div class="course__title"><h3><a class="course__link" href="/cursos/${c.slug}">${c.slug === 'banda' ? 'Formação de bandas' : c.name}</a></h3><span class="course__arrow" aria-hidden="true">${I.arrowPlain}</span></div>
       <p>${esc(c.card)}</p>
@@ -311,7 +309,7 @@ const leadForm = (preset = '') => {
     <p>Leva 20 segundos. Sua mensagem chega pronta no WhatsApp da escola.</p>
     <form class="form" id="lead-form" novalidate>
       <div class="field"><label for="lf-nome">Seu nome</label><input class="input" id="lf-nome" name="nome" type="text" autocomplete="given-name" placeholder="Como podemos te chamar?" required><p class="form__error" hidden>Coloca seu nome pra gente saber com quem está falando.</p></div>
-      <fieldset><legend>Instrumento</legend><div class="chips">${opts('instrumento', ['Violão', 'Guitarra', 'Canto', 'Bateria', 'Teclado', 'Baixo', 'Ukulele', 'Violino', 'Banda', 'Ainda não sei'], preset)}</div></fieldset>
+      <fieldset><legend>Instrumento</legend><div class="chips">${opts('instrumento', ['Violão', 'Guitarra', 'Canto', 'Bateria', 'Teclado', 'Baixo', 'Ukulele', 'Banda', 'Ainda não sei'], preset)}</div></fieldset>
       <fieldset><legend>Seu nível</legend><div class="chips">${opts('nivel', ['Nunca toquei', 'Já toco um pouco', 'Quero voltar a tocar'], '')}</div></fieldset>
       <fieldset><legend>Melhor período</legend><div class="chips">${opts('periodo', ['Manhã', 'Tarde', 'Noite'], '')}</div></fieldset>
       <fieldset><legend>A aula é pra</legend><div class="chips">${opts('para', ['Mim', 'Meu filho ou filha', 'Outra pessoa'], '')}</div></fieldset>
@@ -341,7 +339,7 @@ const placeSection = () => `
 <section class="section on-light" id="unidade" aria-labelledby="unidade-t" style="padding-top:0">
   <div class="container place">
     <div class="place__info" data-reveal="left">
-      <div><span class="eyebrow">A unidade</span><h2 id="unidade-t" style="margin-top:16px">Centro de Camboriú, <span class="serif y">2º andar.</span></h2></div>
+      <div><span class="eyebrow">A unidade</span><h2 id="unidade-t" style="margin-top:16px">No Centro <span class="serif y">de Camboriú.</span></h2></div>
       <ul class="place__list">
         <li><a href="${BIZ.mapsLink}" target="_blank" rel="noopener"><span class="ico-wrap">${I.pin}</span><span><small>Endereço</small><strong>${BIZ.street}<br>${BIZ.district}, ${BIZ.city} (${BIZ.state})</strong></span></a></li>
         <li><a href="${WA_DEFAULT}" target="_blank" rel="noopener" data-track="unidade"><span class="ico-wrap">${I.wa.replace('class="ico"', '')}</span><span><small>WhatsApp</small><strong>${BIZ.phoneDisplay}</strong></span></a></li>
@@ -379,7 +377,7 @@ const home = () => {
         <span class="kicker fade-in" style="--d:200ms">Escola de música em Camboriú com <b>método, repertório e palco.</b></span>
         ${split('Aprenda tocando.', 0)}<br>${split('Viva o', 2)} <span class="w"><span class="serif y" style="--i:4">palco.</span></span>
       </h1>
-      <p class="lead fade-in" style="--d:750ms">Violão, guitarra, baixo, bateria, teclado, canto, ukulele e violino pra quem nunca tocou, pra quem já arranha e pra quem quer voltar. Mais de 3 mil alunos já passaram por aqui.</p>
+      <p class="lead fade-in" style="--d:750ms">Violão, guitarra, baixo, bateria, teclado, canto e ukulele pra quem nunca tocou, pra quem já arranha e pra quem quer voltar. Mais de 5 mil alunos já passaram por aqui.</p>
       <div class="hero__ctas fade-in" style="--d:900ms">
         ${btnWa('Agendar aula experimental', { track: 'hero' })}
         <a class="btn btn--lg" href="#cursos">Ver cursos ${I.arrow}</a>
@@ -389,23 +387,42 @@ const home = () => {
     <div class="hero__aside fade-in" style="--d:1100ms">
       <a class="hero__badge" href="#comecar" aria-label="Agendar aula experimental">
         <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text font-size="15.5" font-weight="800" letter-spacing="3.2" fill="#0b0b0b"><textPath href="#circ">AULA EXPERIMENTAL • AGENDE A SUA • </textPath></text></svg>
-        <span><strong>+3 mil</strong><small>alunos</small></span>
+        <span><strong>+5 mil</strong><small>alunos</small></span>
       </a>
       ${eq(14, 2)}
     </div>
   </div>
 </section>
 
+<section class="section" id="galeria" aria-labelledby="galeria-t">
+  <div class="container">
+    <div class="section__head">
+      <div data-reveal><span class="eyebrow">Quem toca aqui</span><h2 class="h2" id="galeria-t">Aluno da Musicalize <span class="serif y">toca de verdade.</span></h2></div>
+      <p class="lead" data-reveal style="--d:100ms">Apresentações de alunos na escola, no Studio Silver Tape e na loja Cordas e Acordes. Toque no vídeo pra ligar o som.</p>
+    </div>
+  </div>
+  <div class="reels" aria-label="Vídeos de apresentações">${REELS.filter((r) => r.key !== 'daniel').map(reelCard).join('')}</div>
+  <div class="gallery" style="margin-top:clamp(28px,4vw,48px)">
+    ${strip(GALLERY.portrait.slice(0, 12).map((k) => shot(k, labelOf(k))), { speed: 90 })}
+    ${strip(GALLERY.landscape.map((k) => shot(k, labelOf(k), { wide: true })), { speed: 80, rev: true })}
+    ${strip(GALLERY.portrait.slice(12).map((k) => shot(k, labelOf(k))), { speed: 95 })}
+  </div>
+  <div class="container gallery__foot">
+    <p class="lead" style="max-width:40ch">Tem mais vídeo de aluno no Instagram da escola.</p>
+    <a class="btn btn--lg" href="${BIZ.instagram}" target="_blank" rel="noopener">${I.ig.replace('<svg', '<svg class="ico"')}<span>Seguir ${BIZ.instagramHandle}</span></a>
+  </div>
+</section>
+
 <section class="stats" aria-label="Números da Musicalize Camboriú">
   <div class="container stats__grid">
-    <div class="stat" data-reveal><div class="stat__num" data-count="3000" data-prefix="+">+3.000</div><p class="stat__label">alunos já aprenderam música na unidade Camboriú</p></div>
-    <div class="stat" data-reveal style="--d:80ms"><div class="stat__num">7<span class="serif">+</span>1</div><p class="stat__label">sete instrumentos e canto, mais formação de bandas</p></div>
+    <div class="stat" data-reveal><div class="stat__num" data-count="5000" data-prefix="+">+5.000</div><p class="stat__label">alunos já aprenderam música na unidade Camboriú</p></div>
+    <div class="stat" data-reveal style="--d:80ms"><div class="stat__num">6<span class="serif">+</span>1</div><p class="stat__label">seis instrumentos e canto, mais formação de bandas</p></div>
     <div class="stat" data-reveal style="--d:160ms"><div class="stat__num" data-count="5">5</div><p class="stat__label">unidades da rede Musicalize em Santa Catarina</p></div>
     <div class="stat" data-reveal style="--d:240ms"><div class="stat__num" data-count="12">12</div><p class="stat__label">meses por ano de matrícula aberta</p></div>
   </div>
 </section>
 
-${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukulele', 'Violino', 'Banda'])}
+${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukulele', 'Banda'])}
 
 <section class="section on-light" id="metodo" aria-labelledby="metodo-t">
   <div class="container method">
@@ -466,24 +483,6 @@ ${marquee(['Violão', 'Guitarra', 'Baixo', 'Bateria', 'Teclado', 'Canto', 'Ukule
   </div>
 </section>
 
-<section class="section" id="galeria" aria-labelledby="galeria-t">
-  <div class="container">
-    <div class="section__head">
-      <div data-reveal><span class="eyebrow">Quem toca aqui</span><h2 class="h2" id="galeria-t">Aluno da Musicalize <span class="serif y">toca de verdade.</span></h2></div>
-      <p class="lead" data-reveal style="--d:100ms">Apresentações de alunos na escola, no Studio Silver Tape e na loja Cordas e Acordes. Toque no vídeo pra ligar o som.</p>
-    </div>
-  </div>
-  <div class="reels" aria-label="Vídeos de apresentações">${REELS.filter((r) => r.key !== 'daniel').map(reelCard).join('')}</div>
-  <div class="gallery" style="margin-top:clamp(28px,4vw,48px)">
-    ${strip(GALLERY.portrait.slice(0, 12).map((k) => shot(k, labelOf(k))), { speed: 90 })}
-    ${strip(GALLERY.landscape.map((k) => shot(k, labelOf(k), { wide: true })), { speed: 80, rev: true })}
-    ${strip(GALLERY.portrait.slice(12).map((k) => shot(k, labelOf(k))), { speed: 95 })}
-  </div>
-  <div class="container gallery__foot">
-    <p class="lead" style="max-width:40ch">Tem mais vídeo de aluno no Instagram da escola.</p>
-    <a class="btn btn--lg" href="${BIZ.instagram}" target="_blank" rel="noopener">${I.ig.replace('<svg', '<svg class="ico"')}<span>Seguir ${BIZ.instagramHandle}</span></a>
-  </div>
-</section>
 
 ${depoSection(DEPOS.slice(0, 9))}
 
@@ -503,7 +502,7 @@ ${finalCta()}
   return layout({
     path: '/',
     title: 'Escola de Música em Camboriú | Musicalize Camboriú',
-    description: 'Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e violino no Centro de Camboriú (SC). Mais de 3 mil alunos. Agende sua aula experimental.',
+    description: 'Aulas de violão, guitarra, baixo, bateria, teclado, canto e ukulele no Centro de Camboriú (SC). Mais de 5 mil alunos. Agende sua aula experimental.',
     body,
     graph,
     preloadImg: { key: 'hero' },
@@ -544,7 +543,7 @@ const coursePage = (c) => {
     ${shots.length ? `<div class="collage fade-in" style="--d:400ms">
       ${shots.map((k, i) => shot(k, c.slug === 'banda' ? 'Banda' : c.name, { eager: i === 0 })).join('')}
       <div class="collage__badge">${eq(10, 4)}</div>
-    </div>` : `<div class="fade-in" style="--d:400ms">${typeArt(c.name, { big: true })}</div>`}
+    </div>` : ''}
   </div>
 </section>
 
@@ -646,7 +645,7 @@ ${urls.map((u) => `  <url>
 /* ---------- llms-full.txt (gerado a partir do conteúdo) ---------- */
 const llmsFull = () => `# Musicalize Camboriú: guia completo
 
-> Escola de música no Centro de Camboriú (SC), unidade da rede Musicalize. Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele, violino e formação de bandas, com método prático e experiência real de palco. Mais de 3 mil alunos ensinados.
+> Escola de música no Centro de Camboriú (SC), unidade da rede Musicalize. Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas, com método prático e experiência real de palco. Mais de 5 mil alunos ensinados.
 
 Última atualização: ${TODAY}
 Site: ${SITE}/
@@ -654,13 +653,13 @@ Site: ${SITE}/
 ## Dados da escola
 
 - Nome: ${BIZ.name} (Escola de Música Musicalize Camboriú)
-- Endereço: ${BIZ.street}, ${BIZ.district}, ${BIZ.city}, ${BIZ.state}, Brasil
+- Endereço: ${BIZ.street}, ${BIZ.district}, ${BIZ.city}, ${BIZ.state}, CEP ${BIZ.postalCode}, Brasil
 - WhatsApp e telefone: ${BIZ.phoneDisplay} (${BIZ.phoneE164})
 - Agendamento: ${WA_DEFAULT}
 - Instagram: ${BIZ.instagram}
 - Facebook: ${BIZ.facebook}
 - Rede: Musicalize Escola de Música (${BIZ.network}), com unidades em ${BIZ.units.join(', ')}, em Santa Catarina
-- Alunos ensinados na unidade: mais de 3 mil
+- Alunos ensinados na unidade: mais de 5 mil
 - Matrículas: abertas o ano todo
 - Primeiro passo: aula experimental, agendada pelo WhatsApp
 - Atende: Camboriú e Balneário Camboriú (cidade vizinha)

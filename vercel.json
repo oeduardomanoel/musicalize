@@ -8,6 +8,7 @@
   "redirects": [
     { "source": "/index", "destination": "/", "permanent": true },
     { "source": "/cursos", "destination": "/#cursos", "permanent": false },
+    { "source": "/cursos/violino", "destination": "/#cursos", "permanent": true },
     { "source": "/canto", "destination": "/cursos/canto", "permanent": true },
     { "source": "/violao", "destination": "/cursos/violao", "permanent": true },
     { "source": "/guitarra", "destination": "/cursos/guitarra", "permanent": true },

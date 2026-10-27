@@ -8,7 +8,9 @@ export const BIZ = {
   whatsapp: '5547988981229',
   phoneDisplay: '(47) 98898-1229',
   phoneE164: '+5547988981229',
-  street: 'Rua Gustavo Richard, 289, 2º andar',
+  street: 'Rua Ernesto Florêncio Pereira, 17',
+  postalCode: '88340-263',
+  geo: { lat: -27.0204673, lng: -48.6521959 },
   district: 'Centro',
   city: 'Camboriú',
   state: 'SC',
@@ -17,9 +19,9 @@ export const BIZ = {
   instagramHandle: '@musicalizecamboriu',
   facebook: 'https://www.facebook.com/p/Escola-de-M%C3%BAsica-Musicalize-Cambori%C3%BA-100067601375472/',
   network: 'https://www.escolamusicalize.com/',
-  mapsLink: 'https://www.google.com/maps/search/?api=1&query=Musicalize+Cambori%C3%BA+Rua+Gustavo+Richard+289+Cambori%C3%BA+SC',
-  mapsEmbed: 'https://www.google.com/maps?q=Rua+Gustavo+Richard,+289,+Centro,+Cambori%C3%BA+-+SC&output=embed',
-  students: 3000,
+  mapsLink: 'https://www.google.com/maps/search/?api=1&query=Rua+Ernesto+Flor%C3%AAncio+Pereira+17+Centro+Cambori%C3%BA+SC',
+  mapsEmbed: 'https://www.google.com/maps?q=Rua+Ernesto+Flor%C3%AAncio+Pereira,+17,+Centro,+Cambori%C3%BA+-+SC,+88340-263&output=embed',
+  students: 5000,
   units: ['Camboriú', 'Itajaí', 'Itapema', 'Joinville', 'Tijucas'],
 };
 
@@ -52,7 +54,6 @@ export const DEPOS = [
   { n: 6, c: 'teclado', who: 'Aluno de teclado e técnica vocal', points: ['Toca por hobby', 'Música como terapia'] },
   { n: 29, c: 'baixo', who: 'Aluna de baixo', points: ['Começou a tocar para poder tocar na igreja', 'Está gostando do seu aprendizado'] },
   { n: 19, c: 'guitarra', who: 'Aluna de guitarra', points: ['Gosta de rock', 'Queria ter um hobby'] },
-  { n: 20, c: 'violino', who: 'Aluna de violino', points: ['Toca por hobby', 'Gosta de músicas de jogos'] },
   { n: 11, c: 'bateria', who: 'Aluno de bateria', points: ['Sonha tocar em uma banda', 'Tocava desde pequeno em casa'] },
   { n: 34, c: 'canto', who: 'Aluna de técnica vocal', points: ['Tem o sonho de ser cantora', 'Gosta das atividades na aula'] },
   { n: 33, c: 'teclado', who: 'Aluna de teclado', points: ['Começou por indicação da família', 'Gosta do professor e das aulas'] },
@@ -87,18 +88,18 @@ export const ARTISTS = [
 
 // Faixas de fotos da galeria
 export const GALLERY = {
-  portrait: ['violao-1', 'guitarra-1', 'canto-1', 'bateria-1', 'teclado-1', 'baixo-1', 'ukulele-1', 'canto-4', 'bateria-2', 'pro-guitarra-5', 'baixo-3', 'canto-2', 'guitarra-3', 'bateria-5', 'teclado-2', 'pro-baixo-3', 'violao-2', 'banda-2', 'canto-3', 'pro-guitarra-2', 'bateria-3', 'baixo-2', 'guitarra-prof', 'escola'],
-  landscape: ['pro-canto-1', 'pro-bateria-1', 'pro-guitarra-3', 'pro-baixo-5', 'pro-canto-2', 'pro-guitarra-4', 'pro-bateria-2', 'pro-baixo-1', 'pro-canto-3', 'pro-baixo-4', 'aula-baixo'],
+  portrait: ['violao-1', 'guitarra-1', 'canto-1', 'bateria-1', 'teclado-1', 'baixo-1', 'ukulele-1', 'canto-4', 'bateria-2', 'pro-guitarra-5', 'baixo-3', 'canto-2', 'guitarra-3', 'baixo-6', 'teclado-2', 'pro-baixo-3', 'violao-2', 'banda-2', 'canto-3', 'pro-guitarra-2', 'bateria-3', 'baixo-2', 'guitarra-prof', 'escola'],
+  landscape: ['pro-canto-1', 'pro-bateria-1', 'pro-guitarra-3', 'pro-canto-4', 'pro-canto-2', 'pro-guitarra-4', 'pro-bateria-2', 'pro-baixo-1', 'pro-canto-3', 'pro-baixo-4', 'aula-baixo'],
 };
 
 // Cursos. A ordem define o grid da home (banda fica no meio, em destaque).
 export const COURSES = [
   {
-    slug: 'violao', photos: ['violao-1','violao-2','canto-5'], name: 'Violão', program: 'Play Acoustic', nounLower: 'violão',
+    slug: 'violao', photos: ['violao-1','violao-2','canto-5'], name: 'Violão', program: 'Play Guitar', nounLower: 'violão',
     card: 'Acordes, ritmo e repertório pra tocar com segurança desde o começo.',
-    lead: 'Do primeiro acorde à música inteira. No Play Acoustic você aprende acordes, ritmo e repertório pra tocar com segurança desde o começo, com a teoria entrando quando faz sentido na mão.',
+    lead: 'Do primeiro acorde à música inteira. No Play Guitar você aprende acordes, ritmo e repertório pra tocar com segurança desde o começo, com a teoria entrando quando faz sentido na mão.',
     skills: ['Acordes e trocas limpas', 'Batidas e levadas de ritmo', 'Dedilhado e independência das mãos', 'Repertório pra tocar de verdade'],
-    stage: [['Audição PlayAcoustic', 'Palco'], ['Formação de banda', 'Play Band']],
+    stage: [['Audição PlayGuitar', 'Palco'], ['Formação de banda', 'Play Band']],
   },
   {
     slug: 'guitarra', photos: ['guitarra-1','pro-guitarra-5','pro-guitarra-2','guitarra-3','guitarra-2','pro-guitarra-1','guitarra-prof'], name: 'Guitarra', program: 'Play Guitar', nounLower: 'guitarra',
@@ -108,14 +109,14 @@ export const COURSES = [
     stage: [['Audição PlayGuitar', 'Palco'], ['Talkshow Guitar Idol', 'Rede'], ['Musicalize Tour', 'Turnê']],
   },
   {
-    slug: 'canto', photos: ['canto-1','pro-canto-2','canto-4','canto-2','canto-3','canto-5','pro-canto-1'], name: 'Canto', program: 'Play Voice', nounLower: 'canto', h1: 'Aula de canto em Camboriú',
+    slug: 'canto', photos: ['canto-1','pro-canto-2','canto-4','canto-2','canto-3','canto-5','pro-canto-1','pro-canto-4'], name: 'Canto', program: 'Play Voice', nounLower: 'canto', h1: 'Aula de canto em Camboriú',
     card: 'Técnica vocal, afinação e confiança pra cantar na frente de gente.',
     lead: 'Cante com técnica, confiança e presença. O Play Voice trabalha respiração, afinação e interpretação em cima das músicas que você quer cantar.',
     skills: ['Respiração e apoio', 'Afinação e percepção', 'Extensão e cuidado com a voz', 'Interpretação e presença de palco'],
     stage: [['Audição PlayVoice', 'Palco'], ['Talkshow WAV, We Are Voices', 'Rede'], ['Show WorshipM', 'Gospel']],
   },
   {
-    slug: 'bateria', photos: ['bateria-1','bateria-2','bateria-3','bateria-4','bateria-5','bateria-prof','pro-bateria-1','pro-bateria-2'], name: 'Bateria', program: 'Play Drums', nounLower: 'bateria',
+    slug: 'bateria', photos: ['bateria-1','bateria-2','bateria-3','bateria-4','bateria-prof','pro-bateria-1','pro-bateria-2'], name: 'Bateria', program: 'Play Drums', nounLower: 'bateria',
     card: 'Ritmo, coordenação e pegada com segurança desde o início.',
     lead: 'Ritmo, coordenação e pegada. No Play Drums você desenvolve o toque com segurança desde o início e aprende tocando junto com a música.',
     skills: ['Coordenação entre mãos e pés', 'Grooves dos estilos que você curte', 'Viradas e dinâmica', 'Tempo firme pra tocar em banda'],
@@ -136,7 +137,7 @@ export const COURSES = [
     stage: [['Audição PlayKeys', 'Palco'], ['Formação de banda', 'Play Band']],
   },
   {
-    slug: 'baixo', photos: ['baixo-1','baixo-3','baixo-2','baixo-4','pro-baixo-2','baixo-prof','pro-baixo-1'], name: 'Baixo', program: 'Play Bass', nounLower: 'baixo',
+    slug: 'baixo', photos: ['baixo-1','baixo-3','baixo-2','baixo-4','baixo-6','pro-baixo-2','baixo-prof','pro-baixo-1'], name: 'Baixo', program: 'Play Bass', nounLower: 'baixo',
     card: 'Groove, base e musicalidade pra segurar a banda inteira.',
     lead: 'O baixo liga o ritmo à harmonia. No Play Bass você constrói groove, base e musicalidade pra sustentar a música com confiança.',
     skills: ['Groove e tempo', 'Linhas de baixo sobre a harmonia', 'Técnica das duas mãos', 'Tocar colado na bateria'],
@@ -149,20 +150,13 @@ export const COURSES = [
     skills: ['Acordes básicos e trocas', 'Batidas e ritmo', 'Músicas completas cantando junto', 'Base pra seguir no violão ou na guitarra'],
     stage: [['Apresentações dos alunos', 'Palco']],
   },
-  {
-    slug: 'violino', photos: [], name: 'Violino', program: 'Violino', nounLower: 'violino',
-    card: 'Postura, arco e afinação com base sólida, do primeiro som às primeiras peças.',
-    lead: 'Postura, arco e afinação com base sólida. A aula de violino na Musicalize Camboriú te leva do primeiro som limpo às primeiras músicas, com direção clara em cada etapa.',
-    skills: ['Postura e empunhadura', 'Controle do arco', 'Afinação e percepção', 'Primeiras peças e repertório'],
-    stage: [['Apresentações dos alunos', 'Palco']],
-  },
 ];
 
 export const EVENTS = [
   {
     title: 'Audições Play', pill: 'Por instrumento',
     text: 'Cada curso tem a sua audição. É o momento de mostrar no palco o que você trabalhou em aula, com plateia, luz e som.',
-    tags: ['PlayVoice', 'PlayGuitar', 'PlayBass', 'PlayAcoustic', 'PlayKeys', 'PlayBand'],
+    tags: ['PlayVoice', 'PlayGuitar', 'PlayBass', 'PlayKeys', 'PlayBand'],
   },
   {
     title: 'Musicalize Tour', pill: 'Turnê',
@@ -201,7 +195,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'Quais cursos a Musicalize Camboriú oferece?',
-    a: 'Violão, guitarra, baixo, bateria, teclado, canto (técnica vocal), ukulele, violino e formação de bandas.',
+    a: 'Violão, guitarra, baixo, bateria, teclado, canto (técnica vocal), ukulele e formação de bandas.',
   },
   {
     q: 'Quando posso me matricular?',

@@ -351,7 +351,10 @@ p { margin: 0; text-wrap: pretty; }
 .course:hover .course__arrow svg { transform: rotate(0deg); }
 .course p { color: var(--ink-2); font-size: 16px; line-height: 1.5; }
 .course__link::after { content: ""; position: absolute; inset: 0; z-index: 2; }
-.course--feature { background: var(--y); color: var(--y-ink); border-color: var(--y); }
+.course--feature { grid-column: span 2; flex-direction: row; background: var(--y); color: var(--y-ink); border-color: var(--y); }
+.course--feature .course__media { flex: 1.05; aspect-ratio: auto; min-height: 100%; }
+.course--feature .course__body { flex: 1; justify-content: center; padding: clamp(24px, 3vw, 40px); }
+.course--feature h3 { font-size: clamp(30px, 3vw, 44px); }
 .course--feature:hover { background: var(--y-2); border-color: var(--y-ink); }
 .course--feature .course__body { gap: 12px; }
 .course--feature p { color: #2b2a26; }
@@ -512,8 +515,6 @@ p { margin: 0; text-wrap: pretty; }
 .footer ul a { color: var(--ink-2); font-size: 15px; transition: color .25s, padding-left .35s var(--ease); }
 .footer ul a:hover { color: var(--y); padding-left: 6px; }
 .footer__bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: clamp(40px, 6vw, 72px); padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-.footer__big { font-size: clamp(52px, 14vw, 230px); font-weight: 900; letter-spacing: -0.07em; line-height: .8; color: transparent; -webkit-text-stroke: 1.5px var(--line-2); margin-top: clamp(40px, 6vw, 72px); user-select: none; white-space: nowrap; transition: color .8s var(--ease); }
-.footer__big:hover { color: var(--y); -webkit-text-stroke-color: var(--y); }
 
 /* WhatsApp flutuante */
 .wa-float {
@@ -656,17 +657,6 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 
-/* Arte tipográfica para curso sem foto */
-.type-art { position: relative; width: 100%; height: 100%; min-height: 100%; display: grid; place-items: center; overflow: hidden;
-  background: radial-gradient(120% 90% at 80% 0%, rgba(255,204,0,.22), transparent 55%), linear-gradient(160deg, #1d1d1d, #0d0d0d); }
-.type-art__staff { position: absolute; left: -10%; right: -10%; top: 50%; height: 34%; transform: translateY(-50%) rotate(-8deg);
-  background: repeating-linear-gradient(to bottom, rgba(246,243,236,.16) 0 2px, transparent 2px 25%); transition: transform 1s var(--ease); }
-.type-art__word { position: relative; font-size: clamp(64px, 7vw, 110px); line-height: 1; color: var(--y); transform: rotate(-8deg); transition: transform .8s var(--ease); }
-.type-art .eq { position: absolute; left: 18px; bottom: 18px; height: 40px; }
-.course:hover .type-art__word { transform: rotate(-4deg) scale(1.06); }
-.course:hover .type-art__staff { transform: translateY(-50%) rotate(-4deg); }
-.type-art--big { aspect-ratio: 4 / 4.6; border-radius: var(--r); border: 1px solid var(--line); max-width: 520px; margin-inline: auto; }
-.type-art--big .type-art__word { font-size: clamp(90px, 11vw, 170px); }
 
 /* ---------- Revelação no scroll ---------- */
 .js [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease-out), transform 1.1s var(--ease-out); transition-delay: var(--d, 0ms); }
@@ -688,9 +678,9 @@ p { margin: 0; text-wrap: pretty; }
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
   .courses { grid-template-columns: repeat(2, 1fr); }
-  .course--feature { grid-column: span 2; flex-direction: row; }
-  .course--feature .course__media { flex: 1; aspect-ratio: auto; min-height: 300px; }
-  .course--feature .course__body { flex: 1; justify-content: center; padding: 32px; }
+  .course--feature { grid-column: auto; flex-direction: column; }
+  .course--feature .course__media { flex: none; aspect-ratio: 4 / 4.4; min-height: 0; }
+  .course--feature .course__body { flex: 1; justify-content: flex-start; padding: 22px 22px 24px; }
   .skills { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
