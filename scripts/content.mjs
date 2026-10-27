@@ -29,7 +29,7 @@ export const wa = (text) => `https://wa.me/${BIZ.whatsapp}?text=${encodeURICompo
 export const WA_DEFAULT = wa('Oi! Vim pelo site e quero agendar uma aula experimental na Musicalize Camboriú.');
 
 // Fotos e vídeos próprios da escola (gerados por scripts/media.py e scripts/videos.sh)
-export const LOGO = { src: '/assets/img/logo-80.webp', fallback: '/assets/img/logo-80.png', w: 343, h: 80 };
+export const LOGO = { src: '/assets/img/logo-80.webp', fallback: '/assets/img/logo-80.png', w: 339, h: 80 };
 
 // Trechos curtos de apresentações (autoplay mudo, toque para ouvir)
 export const REELS = [
