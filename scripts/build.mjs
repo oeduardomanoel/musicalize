@@ -702,10 +702,20 @@ ${DEPOS.map((d) => `- ${d.who}: ${d.points.join('; ')}.`).join('\n')}
 ${HOME_FAQ.map((f) => `### ${f.q}\n\n${f.a}\n`).join('\n')}`;
 
 /* ---------- Escrita ---------- */
+// Cache-busting: toda imagem/vídeo ganha ?v=<hash do arquivo>. Como /assets/ é servido com cache
+// imutável de 1 ano, trocar um arquivo mantendo o nome exige mudar a URL.
+const fileHash = new Map();
+const bust = async (html) => {
+  const urls = [...new Set(html.match(/\/assets\/(?:img|video)\/[\w.-]+\.(?:webp|avif|png|jpg|mp4)/g) || [])];
+  for (const u of urls) {
+    if (!fileHash.has(u)) fileHash.set(u, await hash(u.slice(1)));
+  }
+  return html.replace(/\/assets\/(?:img|video)\/[\w.-]+\.(?:webp|avif|png|jpg|mp4)/g, (u) => `${u}?v=${fileHash.get(u)}`);
+};
 const write = async (rel, content) => {
   const f = join(OUT, rel);
   await mkdir(dirname(f), { recursive: true });
-  await writeFile(f, content);
+  await writeFile(f, rel.endsWith('.html') ? await bust(content) : content);
 };
 
 await rm(OUT, { recursive: true, force: true });
