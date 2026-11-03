@@ -2,12 +2,12 @@
   "_info": "Mapa chave -> arquivo original (pasta 'fotos' do pacote de assets). Rode: python3 scripts/media.py <pasta-fotos>",
   "photos": {
     "hero": {
-      "src": "27102026-IMG_8105.jpg",
-      "alt": "Banda de alunos da Musicalize tocando no palco com o telão da escola ao fundo"
-    },
-    "palco": {
       "src": "27102026-IMG_7921.jpg",
       "alt": "Aluno de guitarra no palco de um evento da Musicalize"
+    },
+    "palco": {
+      "src": "27102026-IMG_8105.jpg",
+      "alt": "Banda de alunos da Musicalize tocando no palco com o telão da escola ao fundo"
     },
     "aula-baixo": {
       "src": "20 - Workshop de baixo (professor e alunos).png",

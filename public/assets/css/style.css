@@ -728,3 +728,15 @@ p { margin: 0; text-wrap: pretty; }
   .strip { overflow-x: auto; }
 }
 .depo__video { width: 100%; aspect-ratio: 1; background: #000; display: block; }
+
+/* Hero no desktop: foto deslocada para a direita, o aluno fica ao lado do título */
+@media (min-width: 901px) {
+  .hero__media { left: 22%; }
+  .hero__media img { object-position: 35% 30%; }
+  .hero::before {
+    background:
+      linear-gradient(90deg, var(--bg) 20%, rgba(10,10,10,.55) 38%, rgba(10,10,10,0) 60%),
+      radial-gradient(80% 60% at 85% 10%, rgba(255, 204, 0, .16), transparent 60%),
+      linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.1) 35%, rgba(10,10,10,.7) 78%, var(--bg) 100%);
+  }
+}
