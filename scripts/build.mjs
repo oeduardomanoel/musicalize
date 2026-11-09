@@ -11,6 +11,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'dist');
 const PUB = join(ROOT, 'public');
 const TODAY = new Date().toISOString().slice(0, 10);
+const GTM_ID = 'GTM-MPQFZJ5';
 const MEDIA = JSON.parse(await readFile(join(ROOT, 'scripts', 'media.json'), 'utf8'));
 
 const hash = async (f) => createHash('sha1').update(await readFile(join(PUB, f))).digest('hex').slice(0, 10);
@@ -257,10 +258,12 @@ ${preloadImg ? `<link rel="preload" as="image" type="image/avif" imagesrcset="${
 <link rel="stylesheet" href="/assets/css/style.css?v=${V.css}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/js/main.js?v=${V.js}" defer></script>
-<!-- Google Tag Manager / GA4 / Meta Pixel: cole aqui. Eventos já enviados ao dataLayer: whatsapp_click e generate_lead. -->
+<!-- Google Tag Manager. Eventos enviados ao dataLayer: whatsapp_click, generate_lead, testimonial_play, video_sound_on -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');</script>
 ${ld(graph)}
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 ${header()}
 <main id="conteudo">
 ${body}
