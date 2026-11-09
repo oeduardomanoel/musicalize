@@ -6,7 +6,21 @@
   const WA = doc.dataset.wa;
 
   window.dataLayer = window.dataLayer || [];
-  const track = (event, data = {}) => window.dataLayer.push({ event, ...data });
+  // Eventos do site -> eventos padrão da Meta (Pixel instalado no <head>)
+  const META = {
+    whatsapp_click: ['track', 'Contact'],
+    generate_lead: ['track', 'Lead'],
+    testimonial_play: ['trackCustom', 'AssistiuDepoimento'],
+    video_sound_on: ['trackCustom', 'LigouSomVideo'],
+  };
+  const track = (event, data = {}) => {
+    window.dataLayer.push({ event, ...data });
+    const m = META[event];
+    if (m && typeof window.fbq === 'function') {
+      const params = { content_name: data.curso || data.cta_location || data.video || '' };
+      window.fbq(m[0], m[1], params);
+    }
+  };
 
   /* Header: fundo ao rolar e esconde ao descer */
   const header = document.querySelector('.header');

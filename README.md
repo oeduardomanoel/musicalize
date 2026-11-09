@@ -41,7 +41,7 @@ npm run build   # só gera dist/
 
 ## Conversão e tracking
 
-Todos os CTAs abrem o WhatsApp com mensagem pronta (por curso). O formulário "Monte sua aula experimental" qualifica o lead (instrumento, nível, período, pra quem é) e monta a mensagem. Eventos enviados ao `dataLayer`: `whatsapp_click` (com `cta_location` e `curso`), `generate_lead`, `testimonial_play` e `video_sound_on`. O Google Tag Manager da escola (`GTM-MPQFZJ5`) já está instalado em todas as páginas; o ID fica em `GTM_ID`, no topo de `scripts/build.mjs`.
+Todos os CTAs abrem o WhatsApp com mensagem pronta (por curso). O formulário "Monte sua aula experimental" qualifica o lead (instrumento, nível, período, pra quem é) e monta a mensagem. Eventos enviados ao `dataLayer`: `whatsapp_click` (com `cta_location` e `curso`), `generate_lead`, `testimonial_play` e `video_sound_on`. O Google Tag Manager da escola (`GTM-MPQFZJ5`) e o Pixel da Meta (`1886906691667664`) estão instalados em todas as páginas (IDs em `GTM_ID` e `META_PIXEL_ID`, no topo de `scripts/build.mjs`). No Pixel: `PageView` em toda página, `Contact` no clique do WhatsApp, `Lead` no envio do formulário, e os personalizados `AssistiuDepoimento` e `LigouSomVideo`.
 
 ## Fotos e vídeos
 
