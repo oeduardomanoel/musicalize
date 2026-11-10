@@ -211,7 +211,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'A Musicalize é uma rede de escolas?',
-    a: 'Sim. A Musicalize tem unidades em Camboriú, Itajaí, Itapema, Joinville e Tijucas, todas em Santa Catarina, com o mesmo método de prática, ensaio e palco.',
+    a: 'Sim. A Musicalize tem unidades em Camboriú, Itajaí, Itapema, Joinville e Tijucas, todas em Santa Catarina, com o mesmo método de prática, ensaio e palco. Juntas, as unidades já ensinaram mais de 5 mil alunos.',
   },
   {
     q: 'Quais artistas já fizeram workshop na Musicalize?',

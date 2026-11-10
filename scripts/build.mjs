@@ -106,7 +106,7 @@ const school = {
   '@id': SCHOOL_ID,
   name: BIZ.name,
   alternateName: ['Escola de Música Musicalize Camboriú', 'Musicalize Escola de Música Camboriú'],
-  description: 'Escola de música no Centro de Camboriú (SC) com aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas. Método prático, repertório e experiência real de palco. Mais de 5 mil alunos ensinados.',
+  description: 'Escola de música no Centro de Camboriú (SC) com aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas. Método prático, repertório e experiência real de palco. Unidade da rede Musicalize, que já ensinou mais de 5 mil alunos em Santa Catarina.',
   slogan: 'Aprenda tocando. Viva o palco.',
   url: `${SITE}/`,
   logo: `${SITE}/assets/img/logo-80.png`,
@@ -384,7 +384,7 @@ const home = () => {
         <span class="kicker fade-in" style="--d:200ms">Escola de música em Camboriú com <b>método, repertório e palco.</b></span>
         ${split('Aprenda tocando.', 0)}<br>${split('Viva o', 2)} <span class="w"><span class="serif y" style="--i:4">palco.</span></span>
       </h1>
-      <p class="lead fade-in" style="--d:750ms">Violão, guitarra, baixo, bateria, teclado, canto e ukulele pra quem nunca tocou, pra quem já arranha e pra quem quer voltar. Mais de 5 mil alunos já passaram por aqui.</p>
+      <p class="lead fade-in" style="--d:750ms">Violão, guitarra, baixo, bateria, teclado, canto e ukulele pra quem nunca tocou, pra quem já arranha e pra quem quer voltar. Mais de 5 mil alunos já passaram pela rede Musicalize.</p>
       <div class="hero__ctas fade-in" style="--d:900ms">
         ${btnWa('Agendar aula experimental', { track: 'hero' })}
         <a class="btn btn--lg" href="#cursos">Ver cursos ${I.arrow}</a>
@@ -394,7 +394,7 @@ const home = () => {
     <div class="hero__aside fade-in" style="--d:1100ms">
       <a class="hero__badge" href="#comecar" aria-label="Agendar aula experimental">
         <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text font-size="15.5" font-weight="800" letter-spacing="3.2" fill="#0b0b0b"><textPath href="#circ">AULA EXPERIMENTAL • AGENDE A SUA • </textPath></text></svg>
-        <span><strong>+5 mil</strong><small>alunos</small></span>
+        <span><strong>+5 mil</strong><small>alunos<br>na rede</small></span>
       </a>
       ${eq(14, 2)}
     </div>
@@ -422,7 +422,7 @@ const home = () => {
 
 <section class="stats" aria-label="Números da Musicalize Camboriú">
   <div class="container stats__grid">
-    <div class="stat" data-reveal><div class="stat__num" data-count="5000" data-prefix="+">+5.000</div><p class="stat__label">alunos já aprenderam música na unidade Camboriú</p></div>
+    <div class="stat" data-reveal><div class="stat__num" data-count="5000" data-prefix="+">+5.000</div><p class="stat__label">alunos já aprenderam música na rede Musicalize</p></div>
     <div class="stat" data-reveal style="--d:80ms"><div class="stat__num">6<span class="serif">+</span>1</div><p class="stat__label">seis instrumentos e canto, mais formação de bandas</p></div>
     <div class="stat" data-reveal style="--d:160ms"><div class="stat__num" data-count="5">5</div><p class="stat__label">unidades da rede Musicalize em Santa Catarina</p></div>
     <div class="stat" data-reveal style="--d:240ms"><div class="stat__num" data-count="12">12</div><p class="stat__label">meses por ano de matrícula aberta</p></div>
@@ -509,7 +509,7 @@ ${finalCta()}
   return layout({
     path: '/',
     title: 'Escola de Música em Camboriú | Musicalize Camboriú',
-    description: 'Aulas de violão, guitarra, baixo, bateria, teclado, canto e ukulele no Centro de Camboriú (SC). Mais de 5 mil alunos. Agende sua aula experimental.',
+    description: 'Aulas de violão, guitarra, baixo, bateria, teclado, canto e ukulele no Centro de Camboriú (SC). Rede com +5 mil alunos. Agende sua aula experimental.',
     body,
     graph,
     preloadImg: { key: 'hero' },
@@ -652,7 +652,7 @@ ${urls.map((u) => `  <url>
 /* ---------- llms-full.txt (gerado a partir do conteúdo) ---------- */
 const llmsFull = () => `# Musicalize Camboriú: guia completo
 
-> Escola de música no Centro de Camboriú (SC), unidade da rede Musicalize. Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas, com método prático e experiência real de palco. Mais de 5 mil alunos ensinados.
+> Escola de música no Centro de Camboriú (SC), unidade da rede Musicalize. Aulas de violão, guitarra, baixo, bateria, teclado, canto, ukulele e formação de bandas, com método prático e experiência real de palco. Unidade da rede Musicalize, que já ensinou mais de 5 mil alunos.
 
 Última atualização: ${TODAY}
 Site: ${SITE}/
@@ -666,7 +666,7 @@ Site: ${SITE}/
 - Instagram: ${BIZ.instagram}
 - Facebook: ${BIZ.facebook}
 - Rede: Musicalize Escola de Música (${BIZ.network}), com unidades em ${BIZ.units.join(', ')}, em Santa Catarina
-- Alunos ensinados na unidade: mais de 5 mil
+- Alunos ensinados pela rede Musicalize (todas as unidades): mais de 5 mil
 - Matrículas: abertas o ano todo
 - Primeiro passo: aula experimental, agendada pelo WhatsApp
 - Atende: Camboriú e Balneário Camboriú (cidade vizinha)
